@@ -1,229 +1,165 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MMI Fazék | Audi MMI • Hibafeltárás • Kódolás • CarPlay • Alkatrész</title>
-  <meta name="description" content="MMI Fazék – Audi/VAG hibafeltárás, javítás, VCDS/OBD11 kódolás, CarPlay/Android Auto megoldások és alkatrész beszerzés. Budapest, Csepel." />
-  <style>
-    :root{
-      --bg:#0b0f17; --muted:#93a4b8; --text:#e8eef7;
-      --brand:#4da3ff; --brand2:#7c5cff; --border:rgba(255,255,255,.08);
-      --shadow: 0 14px 40px rgba(0,0,0,.45); --radius:18px; --max:1100px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: radial-gradient(1100px 700px at 12% 0%, rgba(77,163,255,.16), transparent 55%),
-                  radial-gradient(900px 500px at 92% 10%, rgba(124,92,255,.16), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px}
-    header{position:sticky;top:0;backdrop-filter: blur(10px);background: rgba(11,15,23,.55);border-bottom:1px solid var(--border);z-index:10;}
-    .nav{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;}
-    .brand{display:flex;gap:10px;align-items:center;font-weight:700;}
-    .logoBox{
-      width:38px;height:38px;border-radius:12px;
-      background: linear-gradient(135deg, rgba(77,163,255,.95), rgba(124,92,255,.95));
-      display:grid;place-items:center;font-weight:900;
-      overflow:hidden;
-    }
-    .menu{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-    .menu a{color:var(--muted);font-size:14px}
-    .menu a:hover{color:var(--text)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 14px;border-radius:14px;border:1px solid var(--border);background: rgba(255,255,255,.02);color:var(--text);font-weight:600;}
-    .btn:hover{border-color:rgba(255,255,255,.18)}
-    .btn.primary{border:none;background: linear-gradient(135deg, var(--brand), var(--brand2));box-shadow: 0 16px 35px rgba(77,163,255,.18);}
-    .hero{padding:44px 0 10px;display:grid;grid-template-columns:1.25fr .9fr;gap:24px;align-items:stretch;}
-    @media (max-width:900px){.hero{grid-template-columns:1fr}.menu a{display:none}}
-    .hcard{background: rgba(16,24,39,.72);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;overflow:hidden;position:relative;}
-    .tag{display:inline-flex;gap:8px;align-items:center;padding:7px 10px;border-radius:999px;background: rgba(77,163,255,.10);border:1px solid rgba(77,163,255,.20);color:#cfe7ff;font-size:13px;margin-bottom:14px;}
-    h1{margin:0 0 10px;font-size:40px;line-height:1.1}
-    .lead{color:var(--muted);font-size:16px;line-height:1.55;margin:0 0 18px}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 10px;}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}}
-    .card{background: rgba(16,24,39,.65);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
-    .card h3{margin:0 0 6px;font-size:16px}
-    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.45}
-    .section{margin:20px 0 0;padding:18px 0;}
-    .section h2{margin:0 0 10px;font-size:24px}
-    .section .sub{margin:0 0 18px;color:var(--muted);line-height:1.55}
-    .list{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-    @media (max-width:900px){.list{grid-template-columns:1fr}}
-    .item{background: rgba(16,24,39,.55);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
-    .item b{display:block;margin-bottom:6px}
-    .item span{color:var(--muted);font-size:14px;line-height:1.45;display:block}
-    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:14px;border:1px solid var(--border);background: rgba(255,255,255,.02);color:var(--muted);font-size:13px;margin-top:10px;}
-    form{display:grid;gap:10px;margin-top:12px;}
-    input,textarea{width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--border);background: rgba(255,255,255,.03);color:var(--text);outline:none;}
-    textarea{min-height:110px;resize:vertical}
-    .footer{margin:28px 0 10px;padding:18px 0 0;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-    .note{color:var(--muted);font-size:13px;margin-top:10px;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MMI Fazék | Audi / VAG Diagnosztika</title>
 
-    /* Gallery */
-    .gallery{display:grid;grid-template-columns:repeat(4, 1fr);gap:12px;}
-    @media (max-width:900px){.gallery{grid-template-columns:repeat(2, 1fr)}}
-    .gItem{
-      border-radius:16px; overflow:hidden; border:1px solid var(--border);
-      background: rgba(255,255,255,.02);
-    }
-    .gItem img{width:100%;height:170px;object-fit:cover;display:block}
-    .gCap{padding:10px 12px;color:var(--muted);font-size:13px;line-height:1.35}
-  </style>
+<style>
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f0f14;
+  color: white;
+}
+
+/* HERO SECTION */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0.85));
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  max-width: 900px;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 64px;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  color: #bfbfbf;
+}
+
+.viber-btn {
+  display: inline-block;
+  padding: 15px 35px;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  border-radius: 40px;
+  background: linear-gradient(45deg, #4da3ff, #7c5cff);
+  transition: 0.3s;
+}
+
+.viber-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ABOUT SECTION */
+
+.section {
+  padding: 80px 20px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.section p {
+  color: #cfcfcf;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.services {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #181824;
+  padding: 25px;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: #222232;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: #0b0b10;
+  color: #888;
+  font-size: 14px;
+}
+
+</style>
 </head>
 
 <body>
-<header>
-  <div class="nav">
-    <div class="brand">
-      <div class="logoBox">
-        <img src="assets/logo.svg" alt="MMI Fazék logo" style="width:30px;height:30px;display:block"/>
-      </div>
-      <div>
-        <div style="font-size:14px;opacity:.95">MMI Fazék</div>
-        <div style="font-size:12px;color:var(--muted)">Audi MMI • Kódolás • CarPlay • Alkatrész</div>
-      </div>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>MMI Fazék</h1>
+    <div class="subtitle">
+      Audi / VAG diagnosztika és frissítések – Budapest, Csepel
     </div>
-    <nav class="menu">
-      <a href="#szolgaltatasok">Szolgáltatások</a>
-      <a href="#galeria">Galéria</a>
-      <a href="#alkatresz">Alkatrész</a>
-      <a href="#shop">Shop</a>
-      <a href="#kapcsolat" class="btn">Ajánlatkérés</a>
-    </nav>
+
+    <a class="viber-btn" href="viber://chat?number=%2B36702421991">
+      Viber: +36 70 242 1991
+    </a>
   </div>
-</header>
+</section>
 
-<main class="wrap">
-  <section class="hero">
-    <div class="hcard">
-      <div class="tag">⚡ Audi / VAG hibafeltárás és frissítések – Budapest, Csepel</div>
-      <h1>MMI Fazék<br/>Diagnosztika, javítás, kódolás, CarPlay és alkatrész.</h1>
-      <p class="lead">
-        Ha hibát dob az autó, furán viselkedik az MMI, vagy funkciót szeretnél aktiválni:
-        átnézem, megmondom mi a gond, és segítek a legjobb megoldással.
-      </p>
+<section class="section">
+  <h2>Bemutatkozás</h2>
+  <p>
+    Az autók elektronikája ma már legalább olyan fontos, mint a motor.
+    Ha hibát dob az MMI, nem működik egy funkció, vagy szeretnél extra kényelmi lehetőségeket aktiválni,
+    nálam jó helyen jársz.
+  </p>
+  <p>
+    Nem találgatok. Hibakód és rendszerlogika alapján keresem meg a valódi problémát —
+    nem cserélünk alkatrészt vaktában.
+  </p>
 
-      <div class="actions">
-        <a class="btn primary" href="https://wa.me/393285556360" target="_blank" rel="noreferrer">WhatsApp: +39 328 555 6360</a>
-        <a class="btn" href="viber://chat?number=%2B36702421991">Viber: +36 70 242 1991</a>
-        <a class="btn" href="#galeria">Munkáim</a>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <h3>✅ Hibafeltárás</h3>
-          <p>Hibakódok + tünetek alapján célzott hibaok-keresés.</p>
-        </div>
-        <div class="card">
-          <h3>🧠 Kódolás</h3>
-          <p>VCDS / OBD11 funkciók, komfort beállítások, finomhangolás.</p>
-        </div>
-        <div class="card">
-          <h3>📲 CarPlay</h3>
-          <p>CarPlay/Android Auto opciók és kompatibilitás (MMI/MIB függő).</p>
-        </div>
-      </div>
-
-      <div class="badge">📍 Budapest, Csepel • Időpont egyeztetés üzenetben</div>
-      <div class="note">*Később saját domainre költöztethető (pl. mmifazek.hu), ugyanebből a fájlból.</div>
-    </div>
-
-    <div class="hcard">
-      <h2 style="margin:0 0 10px">Gyors ajánlatkérés</h2>
-      <p class="sub">Írd le a típust + évjáratot + mi a gond / mit szeretnél.</p>
-
-      <div class="card">
-        <form onsubmit="event.preventDefault(); alert('Köszi! Ez demo űrlap. Ha kéred, megcsinálom úgy, hogy emailre küldjön, vagy WhatsApp/Viber üzenetet nyisson.');">
-          <input placeholder="Név" required />
-          <input placeholder="Telefonszám / email" required />
-          <input placeholder="Autó: típus, évjárat, MMI verzió (ha tudod)" />
-          <textarea placeholder="Hiba / kérés (kódolás, MMI, CarPlay, alkatrész...)"></textarea>
-          <button class="btn primary" type="submit">Küldés</button>
-        </form>
-        <div class="note">Leggyorsabb: WhatsApp vagy Viber üzenet.</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="szolgaltatasok" class="section">
-    <h2>Szolgáltatások</h2>
-    <p class="sub">Audi/VAG vonalon, amit vállalok:</p>
-    <div class="list">
-      <div class="item"><b>Hibafeltárás / diagnosztika</b><span>Hibakód olvasás, értelmezés, célzott javítási javaslat.</span></div>
-      <div class="item"><b>Javítás</b><span>MMI és elektromos jellegű gondok feltárása (esetfüggő).</span></div>
-      <div class="item"><b>Kódolás (VCDS / OBD11)</b><span>Komfort funkciók, extra visszajelzések, finomhangolás.</span></div>
-      <div class="item"><b>CarPlay / Android Auto</b><span>Kompatibilitás + megoldás kiválasztása és beállítás.</span></div>
-      <div class="item"><b>Alkatrész beszerzés</b><span>Gyári / minőségi utángyártott – kompatibilitás ellenőrzéssel.</span></div>
-      <div class="item"><b>Tanácsadás</b><span>Megmondom a legokosabb irányt: mit érdemes és mit nem.</span></div>
-    </div>
-  </section>
-
-  <section id="galeria" class="section">
-    <h2>Galéria – elvégzett munkák</h2>
-    <p class="sub">Itt tudod megmutatni a retrofit / kódolás / MMI javítás “előtte–utána” fotókat.</p>
-
-    <div class="gallery">
-      <div class="gItem">
-        <img src="images/munka1.jpg" alt="Munka 1">
-        <div class="gCap"><b>Munka #1</b><br/>Rövid leírás (pl. MMI hiba javítás)</div>
-      </div>
-      <div class="gItem">
-        <img src="images/munka2.jpg" alt="Munka 2">
-        <div class="gCap"><b>Munka #2</b><br/>Rövid leírás (pl. CarPlay megoldás)</div>
-      </div>
-      <div class="gItem">
-        <img src="images/munka3.jpg" alt="Munka 3">
-        <div class="gCap"><b>Munka #3</b><br/>Rövid leírás (pl. kódolás / extra funkció)</div>
-      </div>
-      <div class="gItem">
-        <img src="images/munka4.jpg" alt="Munka 4">
-        <div class="gCap"><b>Munka #4</b><br/>Rövid leírás (pl. alkatrész csere)</div>
-      </div>
-    </div>
-
-    <div class="note">
-      Tipp: a képeket csak nevezd át <b>munka1.jpg</b>…<b>munka4.jpg</b>-re és dobd az <b>images</b> mappába.
-    </div>
-  </section>
-
-  <section id="alkatresz" class="section">
-    <h2>Alkatrész</h2>
-    <p class="sub">Ajánlat: írd meg a típust + évjáratot + mi kell (ha van, cikkszám).</p>
-    <div class="list">
-      <div class="item"><b>Infotainment / MMI</b><span>Kábelek, csatlakozók, adapterek, modulok.</span></div>
-      <div class="item"><b>Komfort / kiegészítők</b><span>Kapcsolók, gombok, szenzorok, apróságok.</span></div>
-    </div>
-  </section>
-
-  <section id="shop" class="section">
-    <h2>Shop</h2>
-    <p class="sub">Hamarosan: alkatrészek + csomagok. Addig üzenetben megy az ajánlat.</p>
-    <div class="item"><b>🚧 Webshop fejlesztés alatt</b><span>Írj WhatsApp-on vagy Viberen, és küldök opciókat.</span></div>
-  </section>
-
-  <section id="kapcsolat" class="section">
-    <h2>Kapcsolat</h2>
-    <p class="sub">Leggyorsabb: üzenet. Budapest, Csepel.</p>
-    <div class="actions">
-      <a class="btn primary" href="https://wa.me/393285556360" target="_blank" rel="noreferrer">WhatsApp</a>
-      <a class="btn" href="viber://chat?number=%2B36702421991">Viber</a>
-      <a class="btn" href="tel:+36702421991">Hívás (HU)</a>
-      <a class="btn" href="tel:+393285556360">Hívás (IT)</a>
-    </div>
-  </section>
-
-  <div class="footer">
-    <div>© <span id="y"></span> MMI Fazék • Budapest (Csepel)</div>
-    <div><a href="#kapcsolat">Impresszum / Adatkezelés (később)</a></div>
+  <div class="services">
+    <div class="card">Hibafeltárás és diagnosztika</div>
+    <div class="card">VCDS / OBD11 kódolás</div>
+    <div class="card">CarPlay / Android Auto megoldások</div>
+    <div class="card">MMI frissítés és beállítás</div>
+    <div class="card">Alkatrész kompatibilitási tanácsadás</div>
   </div>
-</main>
+</section>
 
-<script>
-  document.getElementById("y").textContent = new Date().getFullYear();
-</script>
+<div class="footer">
+  © 2026 MMI Fazék • Budapest (Csepel)
+</div>
+
 </body>
 </html>
