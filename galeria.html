@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Az MMI Fazék saját Audi munkáinak galériája hamarosan feltöltésre kerül.">
+<title>Galéria | MMI Fazék</title>
+<link rel="canonical" href="https://mmifazek.com/galeria.html">
+<link rel="icon" href="/assets/favicon.ico">
+<meta name="theme-color" content="#05070b">
+<style>
+:root{--bg:#05070b;--panel:#0d121a;--text:#f4f6fa;--muted:#9da8b7;--line:rgba(255,255,255,.11);--red:#e21b2d;--max:1240px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#05070b;color:#fff;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.shell{width:min(var(--max),calc(100% - 36px));margin:auto}
+header{position:fixed;inset:0 0 auto;z-index:50;background:rgba(5,7,11,.84);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{width:310px;max-width:48vw}
+.menu{display:flex;align-items:center;gap:25px}
+.menu a{font-size:14px;font-weight:750;color:var(--muted)}
+.menu a:hover,.menu a.active{color:#fff}
+.menu a.active:after{content:"";display:block;height:2px;margin-top:6px;background:var(--red);border-radius:2px}
+.toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.04);color:#fff;font-size:20px}
+main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:150px 0 80px;background:
+radial-gradient(700px 360px at 50% 35%,rgba(226,27,45,.10),transparent 70%),
+linear-gradient(180deg,#05070b,#080c12)}
+.box{width:min(900px,calc(100% - 32px));text-align:center;padding:58px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(150deg,rgba(255,255,255,.05),rgba(255,255,255,.018));box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.kicker{text-transform:uppercase;letter-spacing:.15em;font-weight:900;font-size:11px;color:#f1b2b8}
+h1{font-size:clamp(48px,7vw,78px);line-height:1.02;letter-spacing:-.05em;margin:18px 0 22px}
+h1 span{color:var(--red)}
+p{font-size:20px;color:#b8c2d0;line-height:1.7;margin:0}
+.note{margin:36px auto 0;padding:20px;border:1px solid var(--line);border-radius:16px;background:#0d121a;color:#d8dee8;line-height:1.65;max-width:680px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+.footer{min-height:96px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+@media(max-width:1000px){
+ .menu{position:fixed;top:82px;left:12px;right:12px;display:none;flex-direction:column;align-items:stretch;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(5,7,11,.98)}
+ .menu.open{display:flex}
+ .toggle{display:block}
+}
+@media(max-width:620px){
+ .shell{width:min(100% - 24px,var(--max))}
+ .nav{min-height:74px}
+ .logo{width:220px;max-width:70vw}
+ .menu{top:74px}
+ main{padding:125px 0 65px}
+ .box{padding:34px 22px}
+ p{font-size:17px}
+ .footer{padding:28px 0;align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="nav shell">
+ <a href="index.html"><img class="logo" src="assets/mmi-fazek-logo.svg" alt="MMI Fazék"></a>
+ <button class="toggle" aria-label="Menü megnyitása">☰</button>
+ <nav class="menu">
+ <a href="index.html">Főoldal</a>
+ <a href="szolgaltatasok.html">Szolgáltatások</a>
+ <a class="active" href="galeria.html">Galéria</a>
+ <a href="hasznalt-alkatreszek.html">Használt alkatrészek</a>
+ <a href="kapcsolat.html">Kapcsolat</a>
+ </nav>
+ </div>
+</header>
+
+<main>
+ <section class="box">
+ <div class="kicker">Referenciák</div>
+ <h1>Galéria <span>feltöltés alatt</span></h1>
+ <p>Jelenleg saját munkáim válogatása készül.</p>
+ <div class="note">Hamarosan valódi referenciafotók, javítások és elkészült Audi projektek kerülnek ide.</div>
+ </section>
+</main>
+
+<footer>
+ <div class="footer shell">
+ <span>© <span id="year"></span> MMI Fazék • MMI specialista</span>
+ <span>Szigetszentmiklós • Előzetes egyeztetés alapján</span>
+ </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const toggle=document.querySelector('.toggle');
+const menu=document.querySelector('.menu');
+toggle.addEventListener('click',()=>{
+ menu.classList.toggle('open');
+ toggle.textContent=menu.classList.contains('open')?'✕':'☰';
+});
+</script>
+</body>
+</html>

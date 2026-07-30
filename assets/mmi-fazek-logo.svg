@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 150" role="img" aria-labelledby="title desc">
+<title id="title">MMI Fazék</title>
+<desc id="desc">Piros-fehér MMI Fazék logó MMI specialista felirattal</desc>
+<defs>
+  <linearGradient id="red" x1="0" x2="1">
+    <stop offset="0" stop-color="#ff2438"/>
+    <stop offset="1" stop-color="#b80f1f"/>
+  </linearGradient>
+  <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="5" result="blur"/>
+    <feMerge>
+      <feMergeNode in="blur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</defs>
+
+<g transform="translate(20 23)">
+  <path d="M12 14h202l-20 88H0z" fill="none" stroke="#eef2f7" stroke-width="5"/>
+  <g fill="url(#red)" filter="url(#glow)">
+    <path d="M34 30h46l-28 58H8z"/>
+    <path d="M79 30h52l-17 22H68z"/>
+    <path d="M64 58h66l-16 18H55z"/>
+    <path d="M51 82h69l-16 16H43z"/>
+  </g>
+</g>
+
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+  <text x="275" y="74" fill="#f2f4f7" font-size="56" font-weight="900" letter-spacing="2">MMI FAZÉK</text>
+  <line x1="277" y1="91" x2="708" y2="91" stroke="#d61a2b" stroke-width="3"/>
+  <text x="279" y="121" fill="#aeb7c4" font-size="20" font-weight="800" letter-spacing="4">MMI SPECIALISTA</text>
+</g>
+</svg>
