@@ -35,51 +35,81 @@ p{font-size:20px;color:#b8c2d0;line-height:1.7;margin:0}
 footer{border-top:1px solid var(--line);color:var(--muted);font-size:12px}
 .footer{min-height:96px;display:flex;justify-content:space-between;align-items:center;gap:20px}
 @media(max-width:1000px){
- .menu{position:fixed;top:82px;left:12px;right:12px;display:none;flex-direction:column;align-items:stretch;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(5,7,11,.98)}
- .menu.open{display:flex}
- .toggle{display:block}
+  .menu{position:fixed;top:82px;left:12px;right:12px;display:none;flex-direction:column;align-items:stretch;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(5,7,11,.98)}
+  .menu.open{display:flex}
+  .toggle{display:block}
 }
 @media(max-width:620px){
- .shell{width:min(100% - 24px,var(--max))}
- .nav{min-height:74px}
- .logo{width:220px;max-width:70vw}
- .menu{top:74px}
- main{padding:125px 0 65px}
- .box{padding:34px 22px}
- p{font-size:17px}
- .footer{padding:28px 0;align-items:flex-start;flex-direction:column}
+  .shell{width:min(100% - 24px,var(--max))}
+  .nav{min-height:74px}
+  .logo{width:220px;max-width:70vw}
+  .menu{top:74px}
+  main{padding:125px 0 65px}
+  .box{padding:34px 22px}
+  p{font-size:17px}
+  .footer{padding:28px 0;align-items:flex-start;flex-direction:column}
 }
+
+/* EGYSÉGES VILÁGOSÍTÁS – minden oldal */
+body::after{
+  background:rgba(0,0,0,.20)!important;
+}
+header,.site-header{
+  background:rgba(5,7,11,.20)!important;
+  backdrop-filter:blur(10px)!important;
+  -webkit-backdrop-filter:blur(10px)!important;
+}
+.hero::before{
+  background:rgba(0,0,0,.20)!important;
+}
+.hero::after{
+  background:rgba(0,0,0,.20)!important;
+}
+.section,.section.alt,.alt,.trust-strip{
+  background:rgba(5,7,11,.20)!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
+}
+.card,.service-premium,.why-copy,.why-list,.why-services-copy,.why-services-list,
+.cta,.contact-card,.hours-card,.rating-card,.map-card,.map-panel,
+.action-card,.reference-card,.category-card,.request-copy,.request-list,
+.about-copy,.about-points,.reviews-copy,.service-preview,.side-card,.box{
+  background:rgba(8,12,18,.38)!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
+}
+
 </style>
 </head>
 <body>
 <header>
- <div class="nav shell">
- <a href="index.html"><img class="logo" src="assets/mmi-fazek-logo.svg" alt="MMI Fazék"></a>
- <button class="toggle" aria-label="Menü megnyitása">☰</button>
- <nav class="menu">
- <a href="index.html">Főoldal</a>
- <a href="szolgaltatasok.html">Szolgáltatások</a>
- <a class="active" href="galeria.html">Galéria</a>
- <a href="hasznalt-alkatreszek.html">Használt alkatrészek</a>
- <a href="kapcsolat.html">Kapcsolat</a>
- </nav>
- </div>
+  <div class="nav shell">
+    <a href="index.html"><img class="logo" src="assets/mmi-fazek-logo.svg" alt="MMI Fazék"></a>
+    <button class="toggle" aria-label="Menü megnyitása">☰</button>
+    <nav class="menu">
+      <a href="index.html">Főoldal</a>
+      <a href="szolgaltatasok.html">Szolgáltatások</a>
+      <a class="active" href="galeria.html">Galéria</a>
+      <a href="hasznalt-alkatreszek.html">Használt alkatrészek</a>
+      <a href="kapcsolat.html">Kapcsolat</a>
+    </nav>
+  </div>
 </header>
 
 <main>
- <section class="box">
- <div class="kicker">Referenciák</div>
- <h1>Galéria <span>feltöltés alatt</span></h1>
- <p>Jelenleg saját munkáim válogatása készül.</p>
- <div class="note">Hamarosan valódi referenciafotók, javítások és elkészült Audi projektek kerülnek ide.</div>
- </section>
+  <section class="box">
+    <div class="kicker">Referenciák</div>
+    <h1>Galéria <span>feltöltés alatt</span></h1>
+    <p>Jelenleg saját munkáim válogatása készül.</p>
+    <div class="note">Hamarosan valódi referenciafotók, javítások és elkészült Audi projektek kerülnek ide.</div>
+  </section>
 </main>
 
 <footer>
- <div class="footer shell">
- <span>© <span id="year"></span> MMI Fazék • MMI specialista</span>
- <span>Szigetszentmiklós • Előzetes egyeztetés alapján</span>
- </div>
+  <div class="footer shell">
+    <span>© <span id="year"></span> MMI Fazék • MMI specialista</span>
+    <span>Szigetszentmiklós • Előzetes egyeztetés alapján</span>
+  </div>
 </footer>
 
 <script>
@@ -87,8 +117,8 @@ document.getElementById('year').textContent=new Date().getFullYear();
 const toggle=document.querySelector('.toggle');
 const menu=document.querySelector('.menu');
 toggle.addEventListener('click',()=>{
- menu.classList.toggle('open');
- toggle.textContent=menu.classList.contains('open')?'✕':'☰';
+  menu.classList.toggle('open');
+  toggle.textContent=menu.classList.contains('open')?'✕':'☰';
 });
 </script>
 </body>

@@ -52,6 +52,36 @@ body::after{
     backdrop-filter:blur(2px);
 }
 
+
+/* EGYSÉGES VILÁGOSÍTÁS – minden oldal */
+body::after{
+  background:rgba(0,0,0,.20)!important;
+}
+header,.site-header{
+  background:rgba(5,7,11,.20)!important;
+  backdrop-filter:blur(10px)!important;
+  -webkit-backdrop-filter:blur(10px)!important;
+}
+.hero::before{
+  background:rgba(0,0,0,.20)!important;
+}
+.hero::after{
+  background:rgba(0,0,0,.20)!important;
+}
+.section,.section.alt,.alt,.trust-strip{
+  background:rgba(5,7,11,.20)!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
+}
+.card,.service-premium,.why-copy,.why-list,.why-services-copy,.why-services-list,
+.cta,.contact-card,.hours-card,.rating-card,.map-card,.map-panel,
+.action-card,.reference-card,.category-card,.request-copy,.request-list,
+.about-copy,.about-points,.reviews-copy,.service-preview,.side-card,.box{
+  background:rgba(8,12,18,.38)!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
+}
+
 </style>
 </head>
 <body>
