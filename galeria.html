@@ -3,123 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Az MMI Fazék saját Audi munkáinak galériája hamarosan feltöltésre kerül.">
+<meta name="description" content="Az MMI Fazék Audi javítási és fejlesztési munkáinak képgalériája.">
 <title>Galéria | MMI Fazék</title>
 <link rel="canonical" href="https://mmifazek.com/galeria.html">
 <link rel="icon" href="/assets/favicon.ico">
 <meta name="theme-color" content="#05070b">
 <style>
 :root{--bg:#05070b;--panel:#0d121a;--text:#f4f6fa;--muted:#9da8b7;--line:rgba(255,255,255,.11);--red:#e21b2d;--max:1240px}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#05070b;color:#fff;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-.shell{width:min(var(--max),calc(100% - 36px));margin:auto}
-header{position:fixed;inset:0 0 auto;z-index:50;background:rgba(5,7,11,.84);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{width:310px;max-width:48vw}
-.menu{display:flex;align-items:center;gap:25px}
-.menu a{font-size:14px;font-weight:750;color:var(--muted)}
-.menu a:hover,.menu a.active{color:#fff}
-.menu a.active:after{content:"";display:block;height:2px;margin-top:6px;background:var(--red);border-radius:2px}
-.toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.04);color:#fff;font-size:20px}
-main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:150px 0 80px;background:
-radial-gradient(700px 360px at 50% 35%,rgba(226,27,45,.10),transparent 70%),
-linear-gradient(180deg,#05070b,#080c12)}
-.box{width:min(900px,calc(100% - 32px));text-align:center;padding:58px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(150deg,rgba(255,255,255,.05),rgba(255,255,255,.018));box-shadow:0 30px 90px rgba(0,0,0,.35)}
-.kicker{text-transform:uppercase;letter-spacing:.15em;font-weight:900;font-size:11px;color:#f1b2b8}
-h1{font-size:clamp(48px,7vw,78px);line-height:1.02;letter-spacing:-.05em;margin:18px 0 22px}
-h1 span{color:var(--red)}
-p{font-size:20px;color:#b8c2d0;line-height:1.7;margin:0}
-.note{margin:36px auto 0;padding:20px;border:1px solid var(--line);border-radius:16px;background:#0d121a;color:#d8dee8;line-height:1.65;max-width:680px}
-footer{border-top:1px solid var(--line);color:var(--muted);font-size:12px}
-.footer{min-height:96px;display:flex;justify-content:space-between;align-items:center;gap:20px}
-@media(max-width:1000px){
-  .menu{position:fixed;top:82px;left:12px;right:12px;display:none;flex-direction:column;align-items:stretch;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(5,7,11,.98)}
-  .menu.open{display:flex}
-  .toggle{display:block}
-}
-@media(max-width:620px){
-  .shell{width:min(100% - 24px,var(--max))}
-  .nav{min-height:74px}
-  .logo{width:220px;max-width:70vw}
-  .menu{top:74px}
-  main{padding:125px 0 65px}
-  .box{padding:34px 22px}
-  p{font-size:17px}
-  .footer{padding:28px 0;align-items:flex-start;flex-direction:column}
-}
-
-/* EGYSÉGES VILÁGOSÍTÁS – minden oldal */
-body::after{
-  background:rgba(0,0,0,.20)!important;
-}
-header,.site-header{
-  background:rgba(5,7,11,.20)!important;
-  backdrop-filter:blur(10px)!important;
-  -webkit-backdrop-filter:blur(10px)!important;
-}
-.hero::before{
-  background:rgba(0,0,0,.20)!important;
-}
-.hero::after{
-  background:rgba(0,0,0,.20)!important;
-}
-.section,.section.alt,.alt,.trust-strip{
-  background:rgba(5,7,11,.20)!important;
-  backdrop-filter:blur(8px)!important;
-  -webkit-backdrop-filter:blur(8px)!important;
-}
-.card,.service-premium,.why-copy,.why-list,.why-services-copy,.why-services-list,
-.cta,.contact-card,.hours-card,.rating-card,.map-card,.map-panel,
-.action-card,.reference-card,.category-card,.request-copy,.request-list,
-.about-copy,.about-points,.reviews-copy,.service-preview,.side-card,.box{
-  background:rgba(8,12,18,.38)!important;
-  backdrop-filter:blur(8px)!important;
-  -webkit-backdrop-filter:blur(8px)!important;
-}
-
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#05070b;color:#fff;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}.shell{width:min(var(--max),calc(100% - 36px));margin:auto}
+header{position:fixed;inset:0 0 auto;z-index:50;background:rgba(5,7,11,.84);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}.logo{width:310px;max-width:48vw}.menu{display:flex;align-items:center;gap:25px}.menu a{font-size:14px;font-weight:750;color:var(--muted)}.menu a:hover,.menu a.active{color:#fff}.menu a.active:after{content:"";display:block;height:2px;margin-top:6px;background:var(--red);border-radius:2px}.toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.04);color:#fff;font-size:20px}
+main{min-height:100vh;padding:145px 0 80px;background:radial-gradient(900px 500px at 50% 18%,rgba(226,27,45,.11),transparent 70%),linear-gradient(180deg,#05070b,#080c12)}.intro{text-align:center;max-width:800px;margin:0 auto 42px}.kicker{text-transform:uppercase;letter-spacing:.15em;font-weight:900;font-size:11px;color:#f1b2b8}.intro h1{font-size:clamp(42px,6vw,72px);line-height:1.02;letter-spacing:-.05em;margin:16px 0 18px}.intro h1 span{color:var(--red)}.intro p{font-size:18px;color:#b8c2d0;line-height:1.65;margin:0}
+.folder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.folder-card{position:relative;min-height:330px;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:#10151d;cursor:pointer;text-align:left;color:#fff;padding:0;box-shadow:0 24px 65px rgba(0,0,0,.28);transition:.25s transform,.25s border-color}.folder-card:hover{transform:translateY(-6px);border-color:rgba(226,27,45,.55)}.folder-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.folder-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 20%,rgba(3,5,8,.92) 100%)}.folder-card.empty::before{content:"📁";position:absolute;inset:55px 0 auto;text-align:center;font-size:82px;filter:grayscale(.25);z-index:1}.folder-card.empty{background:radial-gradient(circle at 50% 30%,rgba(226,27,45,.12),transparent 45%),#0d121a}.folder-info{position:absolute;z-index:2;left:24px;right:24px;bottom:23px}.folder-info h2{font-size:27px;margin:0 0 7px;letter-spacing:-.025em}.folder-info p{margin:0;color:#c0c8d3;font-size:14px}.count{display:inline-flex;align-items:center;gap:7px;margin-top:14px;padding:7px 10px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(0,0,0,.34);font-size:12px;font-weight:800}.count::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
+.gallery-panel{display:none;margin-top:46px}.gallery-panel.open{display:block}.panel-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:22px}.panel-head h2{font-size:36px;margin:0}.back-btn{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;border-radius:12px;padding:11px 15px;cursor:pointer}.back-btn:hover{border-color:var(--red)}.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.photo{display:block;border:0;padding:0;background:#111;border-radius:18px;overflow:hidden;cursor:zoom-in;aspect-ratio:4/3}.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}.photo:hover img{transform:scale(1.035)}
+.empty-message{display:none;margin-top:34px;text-align:center;padding:35px;border:1px solid var(--line);border-radius:20px;background:rgba(8,12,18,.52);color:#c7ced8}.empty-message.show{display:block}.empty-message strong{display:block;color:#fff;font-size:22px;margin-bottom:8px}
+.lightbox{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.94);padding:28px}.lightbox.open{display:flex}.lightbox img{max-width:min(1200px,88vw);max-height:86vh;object-fit:contain;border-radius:12px}.lb-close,.lb-prev,.lb-next{position:absolute;border:1px solid rgba(255,255,255,.2);background:rgba(8,10,14,.68);color:#fff;cursor:pointer}.lb-close{right:22px;top:20px;width:46px;height:46px;border-radius:50%;font-size:25px}.lb-prev,.lb-next{top:50%;transform:translateY(-50%);width:50px;height:62px;border-radius:14px;font-size:32px}.lb-prev{left:18px}.lb-next{right:18px}.lb-count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#ddd;font-size:13px;background:rgba(0,0,0,.55);padding:7px 11px;border-radius:999px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:12px}.footer{min-height:96px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+@media(max-width:1000px){.menu{position:fixed;top:82px;left:12px;right:12px;display:none;flex-direction:column;align-items:stretch;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(5,7,11,.98)}.menu.open{display:flex}.toggle{display:block}.folder-grid{grid-template-columns:repeat(2,1fr)}.photo-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.shell{width:min(100% - 24px,var(--max))}.nav{min-height:74px}.logo{width:220px;max-width:70vw}.menu{top:74px}main{padding:118px 0 60px}.folder-grid,.photo-grid{grid-template-columns:1fr}.folder-card{min-height:280px}.panel-head{align-items:flex-start;flex-direction:column}.footer{padding:28px 0;align-items:flex-start;flex-direction:column}.lb-prev,.lb-next{width:42px;height:54px}.lb-prev{left:7px}.lb-next{right:7px}.lightbox{padding:12px}.lightbox img{max-width:96vw}}
 </style>
 </head>
 <body>
-<header>
-  <div class="nav shell">
-    <a href="index.html"><img class="logo" src="assets/mmi-fazek-logo.svg" alt="MMI Fazék"></a>
-    <button class="toggle" aria-label="Menü megnyitása">☰</button>
-    <nav class="menu">
-      <a href="index.html">Főoldal</a>
-      <a href="szolgaltatasok.html">Szolgáltatások</a>
-      <a class="active" href="galeria.html">Galéria</a>
-      <a href="hasznalt-alkatreszek.html">Használt alkatrészek</a>
-      <a href="kapcsolat.html">Kapcsolat</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="box">
-    <div class="kicker">Referenciák</div>
-    <h1>Galéria <span>feltöltés alatt</span></h1>
-    <p>Jelenleg saját munkáim válogatása készül.</p>
-    <div class="note">Hamarosan valódi referenciafotók, javítások és elkészült Audi projektek kerülnek ide.</div>
-  </section>
-</main>
-
-<footer>
-  <div class="footer shell">
-    <span>© <span id="year"></span> MMI Fazék • MMI specialista</span>
-    <span>Szigetszentmiklós • Előzetes egyeztetés alapján</span>
-  </div>
-</footer>
-
+<header><div class="nav shell"><a href="index.html"><img class="logo" src="assets/mmi-fazek-logo.svg" alt="MMI Fazék"></a><button class="toggle" aria-label="Menü megnyitása">☰</button><nav class="menu"><a href="index.html">Főoldal</a><a href="szolgaltatasok.html">Szolgáltatások</a><a class="active" href="galeria.html">Galéria</a><a href="hasznalt-alkatreszek.html">Használt alkatrészek</a><a href="kapcsolat.html">Kapcsolat</a></nav></div></header>
+<main><div class="shell"><section class="intro"><div class="kicker">Referenciák</div><h1>Munkáim <span>képekben</span></h1><p>Valódi javítások, fejlesztések és Audi projektek az MMI Fazék műhelyéből.</p></section>
+<section class="folder-grid" id="folders">
+<button class="folder-card" data-folder="munka"><img src="assets/gallery/munka-kozben/munka-01.webp" alt="Munka közben galéria borító"><span class="folder-info"><h2>Munka közben</h2><p>Szerelés, diagnosztika és beépítés</p><span class="count">6 kép</span></span></button>
+<button class="folder-card empty" data-folder="c6"><span class="folder-info"><h2>Audi A6 C6</h2><p>C6 projektek és javítások</p><span class="count">0 kép</span></span></button>
+<button class="folder-card empty" data-folder="c7"><span class="folder-info"><h2>Audi A6 C7</h2><p>C7 projektek és javítások</p><span class="count">0 kép</span></span></button>
+</section>
+<section class="gallery-panel" id="munka"><div class="panel-head"><div><div class="kicker">Galéria</div><h2>Munka közben</h2></div><button class="back-btn">← Vissza a mappákhoz</button></div><div class="photo-grid">
+<button class="photo"><img src="assets/gallery/munka-kozben/munka-01.webp" alt="Audi MMI szerelés közben" loading="lazy"></button>
+<button class="photo"><img src="assets/gallery/munka-kozben/munka-02.webp" alt="Működő navigáció Audi A6-ban" loading="lazy"></button>
+<button class="photo"><img src="assets/gallery/munka-kozben/munka-03.webp" alt="Szétszerelt Audi műszerfal javítás közben" loading="lazy"></button>
+<button class="photo"><img src="assets/gallery/munka-kozben/munka-04.webp" alt="Audi MMI diagnosztika és szerelés" loading="lazy"></button>
+<button class="photo"><img src="assets/gallery/munka-kozben/munka-05.webp" alt="Audi műszerfal bontás közben" loading="lazy"></button>
+<button class="photo"><img src="assets/gallery/munka-kozben/munka-06.webp" alt="Audi vezérlőegység szerelése" loading="lazy"></button>
+</div></section>
+<div class="empty-message" id="emptyMessage"><strong>A mappa még üres</strong>Hamarosan ide is felkerülnek a referenciafotók.</div>
+</div></main>
+<footer><div class="footer shell"><span>© <span id="year"></span> MMI Fazék • MMI specialista</span><span>Szigetszentmiklós • Előzetes egyeztetés alapján</span></div></footer>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Képnagyító"><button class="lb-close" aria-label="Bezárás">×</button><button class="lb-prev" aria-label="Előző kép">‹</button><img src="" alt="Nagyított galériakép"><button class="lb-next" aria-label="Következő kép">›</button><div class="lb-count"></div></div>
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();
-const toggle=document.querySelector('.toggle');
-const menu=document.querySelector('.menu');
-toggle.addEventListener('click',()=>{
-  menu.classList.toggle('open');
-  toggle.textContent=menu.classList.contains('open')?'✕':'☰';
-});
+const toggle=document.querySelector('.toggle'),menu=document.querySelector('.menu');toggle.addEventListener('click',()=>{menu.classList.toggle('open');toggle.textContent=menu.classList.contains('open')?'✕':'☰'});
+const folders=document.getElementById('folders'),panel=document.getElementById('munka'),empty=document.getElementById('emptyMessage');
+document.querySelectorAll('.folder-card').forEach(card=>card.addEventListener('click',()=>{if(card.dataset.folder==='munka'){folders.style.display='none';empty.classList.remove('show');panel.classList.add('open');panel.scrollIntoView({behavior:'smooth',block:'start'})}else{panel.classList.remove('open');empty.classList.add('show');empty.scrollIntoView({behavior:'smooth',block:'center'})}}));
+document.querySelector('.back-btn').addEventListener('click',()=>{panel.classList.remove('open');folders.style.display='grid';folders.scrollIntoView({behavior:'smooth',block:'start'})});
+const photoButtons=[...document.querySelectorAll('.photo')],lb=document.getElementById('lightbox'),lbImg=lb.querySelector('img'),lbCount=lb.querySelector('.lb-count');let current=0;
+function showPhoto(i){current=(i+photoButtons.length)%photoButtons.length;lbImg.src=photoButtons[current].querySelector('img').src;lbImg.alt=photoButtons[current].querySelector('img').alt;lbCount.textContent=`${current+1} / ${photoButtons.length}`}
+photoButtons.forEach((b,i)=>b.addEventListener('click',()=>{showPhoto(i);lb.classList.add('open');document.body.style.overflow='hidden'}));
+function closeLb(){lb.classList.remove('open');document.body.style.overflow=''}
+lb.querySelector('.lb-close').addEventListener('click',closeLb);lb.querySelector('.lb-prev').addEventListener('click',()=>showPhoto(current-1));lb.querySelector('.lb-next').addEventListener('click',()=>showPhoto(current+1));lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')showPhoto(current-1);if(e.key==='ArrowRight')showPhoto(current+1)});
 </script>
-</body>
-</html>
+</body></html>
