@@ -78,6 +78,7 @@ header,.site-header{
   -webkit-backdrop-filter:blur(8px)!important;
 }
 
+.credit{color:#d9dee6}.credit a{color:#fff;font-weight:750}.credit a:hover{color:var(--red)}
 </style>
 </head>
 <body>
@@ -100,7 +101,7 @@ header,.site-header{
 <section class="section alt"><div class="why shell"><div class="why-copy reveal"><span class="kicker">Miért az MMI Fazék?</span><h2>Először diagnosztika. Utána megoldás.</h2><p>Nem alkatrészcserével kezdünk. Először meg kell érteni, mi okozza a hibát, és csak utána érdemes dönteni a következő lépésről.</p></div><div class="why-list reveal"><div><span>✓</span><strong>Pontos hibafeltárás</strong><small>A hiba okát keressük, nem csak a hibakódot.</small></div><div><span>✓</span><strong>Egyedi vizsgálat</strong><small>Minden autó felszereltsége és rendszerverziója más.</small></div><div><span>✓</span><strong>Előzetes egyeztetés</strong><small>Telefonon vagy e-mailben gyorsan tisztázható az alaphelyzet.</small></div><div><span>✓</span><strong>Korrekt irány</strong><small>Ha egy javítás vagy fejlesztés nem éri meg, azt is megmondom.</small></div></div></div></section>
 <section class="section shell"><div class="cta reveal"><div><span class="kicker">Kapcsolat</span><h2>Nem biztos benne, mi a hiba?</h2><p>Telefonon vagy e-mailben röviden egyeztetjük az autót és a problémát.</p></div><div class="actions"><a class="btn primary" href="tel:+36702421991">+36 70 242 1991</a><a class="btn secondary" href="mailto:mmifazek@gmail.com">mmifazek@gmail.com</a></div></div></section>
 </main>
-<footer><div class="footer shell"><span>© <span id="year"></span> MMI Fazék • MMI specialista</span><span>Szigetszentmiklós • Előzetes egyeztetés alapján</span></div></footer>
+<footer><div class="footer shell"><span>© <span id="year"></span> MMI Fazék • MMI specialista</span><span class="credit">Az oldalt tervezte és készítette: <strong>Máhli Róbert</strong> • <a href="mailto:mrobika84@gmail.com">mrobika84@gmail.com</a></span></div></footer>
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();
 const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');o.unobserve(e.target)}}),{threshold:.1});

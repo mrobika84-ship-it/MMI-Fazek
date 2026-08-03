@@ -84,6 +84,7 @@ header,.site-header{
   -webkit-backdrop-filter:blur(8px)!important;
 }
 
+.credit{color:#d9dee6}.credit a{color:#fff;font-weight:750}.credit a:hover{color:var(--red)}
 </style>
 </head>
 <body>
@@ -138,7 +139,7 @@ header,.site-header{
 
 </main>
 
-<footer><div class="footer shell"><div><div>© <span id="year"></span> MMI Fazék • MMI specialista</div><div style="font-size:11px;margin-top:6px;opacity:.75">Tervezte: Máhli Róbert, mrobika84@gmail.com</div></div><span>Szigetszentmiklós • Előzetes egyeztetés alapján</span></div></footer>
+<footer><div class="footer shell"><span>© <span id="year"></span> MMI Fazék • MMI specialista</span><span class="credit">Az oldalt tervezte és készítette: <strong>Máhli Róbert</strong> • <a href="mailto:mrobika84@gmail.com">mrobika84@gmail.com</a></span></div></footer>
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});
