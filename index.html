@@ -26,126 +26,19 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:12px}.foote
 @media(max-width:1000px){.menu{position:fixed;top:82px;left:12px;right:12px;display:none;flex-direction:column;align-items:stretch;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(5,7,11,.98)}.menu.open{display:flex}.toggle{display:block}.trust-row{grid-template-columns:repeat(2,1fr);padding:18px 0}.grid,.services-preview{grid-template-columns:1fr 1fr}.reviews,.about{grid-template-columns:1fr}.cta{align-items:flex-start;flex-direction:column}}
 @media(max-width:620px){.shell{width:min(100% - 24px,var(--max))}.nav{min-height:74px}.logo{width:220px;max-width:70vw}.menu{top:74px}.hero{min-height:auto;padding:132px 0 76px;background-size:auto 108%;background-position:64% center}h1{font-size:48px}.lead{font-size:16px}.actions .btn{flex:1}.trust-row,.grid,.services-preview{grid-template-columns:1fr}.section{padding:74px 0}.reviews-copy,.rating-card,.about-copy,.about-points{padding:25px}.footer{padding:28px 0;align-items:flex-start;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.hero{animation:none}.reveal{opacity:1;transform:none;transition:none}}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-3;
-    background:
-      linear-gradient(90deg,rgba(6,10,16,.52),rgba(6,10,16,.30) 48%,rgba(6,10,16,.12)),
-      url('assets/home-a6-c6.webp') center/cover no-repeat;
-    transform:translateZ(0);
-}
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    background:linear-gradient(180deg,rgba(5,7,11,.02),rgba(5,7,11,.32));
-    pointer-events:none;
-}
-.hero{
-    background-image:none!important;
-    background-color:transparent!important;
-}
-.section,.alt,.trust-strip{
-    background:rgba(5,7,11,.62)!important;
-    backdrop-filter:blur(2px);
-}
-
-
-/* EGYSÉGES VILÁGOSÍTÁS – minden oldal */
-body::after{
-  background:rgba(0,0,0,.20)!important;
-}
-header,.site-header{
-  background:rgba(5,7,11,.20)!important;
-  backdrop-filter:blur(10px)!important;
-  -webkit-backdrop-filter:blur(10px)!important;
-}
-.hero::before{
-  background:rgba(0,0,0,.20)!important;
-}
-.hero::after{
-  background:rgba(0,0,0,.20)!important;
-}
-.section,.section.alt,.alt,.trust-strip{
-  background:rgba(5,7,11,.20)!important;
-  backdrop-filter:blur(8px)!important;
-  -webkit-backdrop-filter:blur(8px)!important;
-}
-.card,.service-premium,.why-copy,.why-list,.why-services-copy,.why-services-list,
-.cta,.contact-card,.hours-card,.rating-card,.map-card,.map-panel,
-.action-card,.reference-card,.category-card,.request-copy,.request-list,
-.about-copy,.about-points,.reviews-copy,.service-preview,.side-card,.box{
-  background:rgba(8,12,18,.38)!important;
-  backdrop-filter:blur(8px)!important;
-  -webkit-backdrop-filter:blur(8px)!important;
-}
-
-.credit{color:#d9dee6}.credit a{color:#fff;font-weight:750}.credit a:hover{color:var(--red)}
+body::before{content:"";position:fixed;inset:0;z-index:-3;background:linear-gradient(90deg,rgba(6,10,16,.52),rgba(6,10,16,.30) 48%,rgba(6,10,16,.12)),url('assets/home-a6-c6.webp') center/cover no-repeat;transform:translateZ(0)}body::after{content:"";position:fixed;inset:0;z-index:-2;background:rgba(0,0,0,.20)!important;pointer-events:none}.hero{background-image:none!important;background-color:transparent!important}.section,.alt,.trust-strip{background:rgba(5,7,11,.20)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important}header,.site-header{background:rgba(5,7,11,.20)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}.hero::before,.hero::after{background:rgba(0,0,0,.20)!important}.card,.service-premium,.why-copy,.why-list,.why-services-copy,.why-services-list,.cta,.contact-card,.hours-card,.rating-card,.map-card,.map-panel,.action-card,.reference-card,.category-card,.request-copy,.request-list,.about-copy,.about-points,.reviews-copy,.service-preview,.side-card,.box{background:rgba(8,12,18,.38)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important}.credit{color:#d9dee6}.credit a{color:#fff;font-weight:750}.credit a:hover{color:var(--red)}
 </style>
 </head>
 <body>
-<header><div class="nav shell">
-<a href="index.html"><img class="logo" src="assets/mmi-fazek-logo.svg" alt="MMI Fazék"></a>
-<button class="toggle" aria-label="Menü megnyitása">☰</button>
-<nav class="menu"><a class="active" href="index.html">Főoldal</a><a href="szolgaltatasok.html">Szolgáltatások</a><a href="galeria.html">Galéria</a><a href="hasznalt-alkatreszek.html">Használt alkatrészek</a><a href="kapcsolat.html">Kapcsolat</a></nav>
-</div></header>
-
+<header><div class="nav shell"><a href="index.html"><img class="logo" src="assets/mmi-fazek-logo.svg" alt="MMI Fazék"></a><button class="toggle" aria-label="Menü megnyitása">☰</button><nav class="menu"><a class="active" href="index.html">Főoldal</a><a href="szolgaltatasok.html">Szolgáltatások</a><a href="galeria.html">Galéria</a><a href="hasznalt-alkatreszek.html">Használt alkatrészek</a><a href="kapcsolat.html">Kapcsolat</a></nav></div></header>
 <main>
-<section class="hero"><div class="hero-content shell reveal">
-<div class="eyebrow">MMI specialista • Szigetszentmiklós</div>
-<h1>Audi MMI hibák?<br><em>Megtaláljuk a valódi okát.</em></h1>
-<p class="lead">Diagnosztika • MMI • Kódolás • CarPlay • Használt Audi alkatrészek</p>
-
-</div></section>
-
-<section class="trust-strip"><div class="trust-row shell">
-<div><span>✓</span>Pontos diagnosztika</div><div><span>✓</span>MMI rendszerek</div><div><span>✓</span>Kódolás</div><div><span>✓</span>CarPlay</div><div><span>✓</span>Használt Audi alkatrészek</div>
-</div></section>
-
-<section class="section shell">
-<div class="section-head reveal"><span class="kicker">Miért az MMI Fazék?</span><h2>Nem találgatás. Pontos hibafeltárás.</h2><p>Nem minden MMI hiba jelent drága javítást. A pontos diagnózis gyakran időt és pénzt takarít meg.</p></div>
-<div class="grid">
-<article class="card reveal"><div class="icon">01</div><h3>Pontos hibafeltárás</h3><p>Nem csak a hibakódot nézzük, hanem a valódi hiba okát keressük.</p></article>
-<article class="card reveal"><div class="icon">02</div><h3>Audi specializáció</h3><p>MMI rendszerek, diagnosztika, kódolás és CarPlay megoldások.</p></article>
-<article class="card reveal"><div class="icon">03</div><h3>Korrekt tanácsadás</h3><p>Ha egy javítás vagy fejlesztés nem indokolt, azt is őszintén elmondom.</p></article>
-<article class="card reveal"><div class="icon">04</div><h3>Előzetes egyeztetés</h3><p>Telefonon vagy e-mailben gyorsan átbeszéljük a problémát.</p></article>
-</div>
-</section>
-
-<section class="section alt">
-<div class="reviews shell">
-<div class="reviews-copy reveal"><span class="kicker">Google értékelések</span><h2>Ügyfeleim visszajelzései.</h2><p>A Google Cégprofilon jelenleg 5,0-s értékelés látható hat ügyfélvélemény alapján.</p></div>
-<div class="rating-card reveal"><div class="stars">★★★★★</div><div class="score">5,0</div><strong>6 Google értékelés</strong><p>Ügyfeleim visszajelzései alapján.</p><a class="btn primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=MMI+Faz%C3%A9k+Szigetszentmikl%C3%B3s">Google értékelések megtekintése</a></div>
-</div>
-</section>
-
-
-
-<section class="section alt">
-<div class="about shell">
-<div class="about-copy reveal"><span class="kicker">Szemlélet</span><h2>Először megértjük a hibát.</h2><p>Az MMI Fazék célja, hogy Audi MMI problémák esetén ne találgatással kezdődjön a javítás. Minden autót egyedileg vizsgálok meg, és csak olyan megoldást javaslok, amely valóban indokolt.</p></div>
-<div class="about-points reveal">
-<div class="about-point"><span>✓</span><div><strong>Modellfüggő vizsgálat</strong><small>Minden évjárat és felszereltség más lehet.</small></div></div>
-<div class="about-point"><span>✓</span><div><strong>Érthető kommunikáció</strong><small>A lehetőségeket közérthetően beszéljük át.</small></div></div>
-<div class="about-point"><span>✓</span><div><strong>Ésszerű megoldás</strong><small>A cél nem a felesleges alkatrészcsere.</small></div></div>
-</div>
-</div>
-</section>
-
-
+<section class="hero"><div class="hero-content shell reveal"><div class="eyebrow">MMI specialista • Szigetszentmiklós</div><h1>Audi MMI hibák?<br><em>Megtaláljuk a valódi okát.</em></h1><p class="lead">Diagnosztika • MMI • Kódolás • CarPlay • Használt Audi alkatrészek</p></div></section>
+<section class="trust-strip"><div class="trust-row shell"><div><span>✓</span>Pontos diagnosztika</div><div><span>✓</span>MMI rendszerek</div><div><span>✓</span>Kódolás</div><div><span>✓</span>CarPlay</div><div><span>✓</span>Használt Audi alkatrészek</div></div></section>
+<section class="section shell"><div class="section-head reveal"><span class="kicker">Miért az MMI Fazék?</span><h2>Nem találgatás. Pontos hibafeltárás.</h2><p>Nem minden MMI hiba jelent drága javítást. A pontos diagnózis gyakran időt és pénzt takarít meg.</p></div><div class="grid"><article class="card reveal"><div class="icon">01</div><h3>Pontos hibafeltárás</h3><p>Nem csak a hibakódot nézzük, hanem a valódi hiba okát keressük.</p></article><article class="card reveal"><div class="icon">02</div><h3>Audi specializáció</h3><p>MMI rendszerek, diagnosztika, kódolás és CarPlay megoldások.</p></article><article class="card reveal"><div class="icon">03</div><h3>Korrekt tanácsadás</h3><p>Ha egy javítás vagy fejlesztés nem indokolt, azt is őszintén elmondom.</p></article><article class="card reveal"><div class="icon">04</div><h3>Előzetes egyeztetés</h3><p>Telefonon vagy e-mailben gyorsan átbeszéljük a problémát.</p></article></div></section>
+<section class="section alt"><div class="reviews shell"><div class="reviews-copy reveal"><span class="kicker">Google értékelések</span><h2>Ügyfeleim visszajelzései.</h2><p>A Google Cégprofilon jelenleg 5,0-s értékelés látható hat ügyfélvélemény alapján.</p></div><div class="rating-card reveal"><div class="stars">★★★★★</div><div class="score">5,0</div><strong>6 Google értékelés</strong><p>Ügyfeleim visszajelzései alapján.</p><a class="btn primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=MMI+Faz%C3%A9k+Szigetszentmikl%C3%B3s">Google értékelések megtekintése</a></div></div></section>
+<section class="section alt"><div class="about shell"><div class="about-copy reveal"><span class="kicker">Szemlélet</span><h2>Először megértjük a hibát.</h2><p>Az MMI Fazék célja, hogy Audi MMI problémák esetén ne találgatással kezdődjön a javítás. Minden autót egyedileg vizsgálok meg, és csak olyan megoldást javaslok, amely valóban indokolt.</p></div><div class="about-points reveal"><div class="about-point"><span>✓</span><div><strong>Modellfüggő vizsgálat</strong><small>Minden évjárat és felszereltség más lehet.</small></div></div><div class="about-point"><span>✓</span><div><strong>Érthető kommunikáció</strong><small>A lehetőségeket közérthetően beszéljük át.</small></div></div><div class="about-point"><span>✓</span><div><strong>Ésszerű megoldás</strong><small>A cél nem a felesleges alkatrészcsere.</small></div></div></div></div></section>
 </main>
-
-<footer><div class="footer shell"><span>© <span id="year"></span> MMI Fazék • MMI specialista</span><span class="credit">Az oldalt tervezte és készítette: <strong>Máhli Róbert</strong> • <a href="mailto:mrobika84@gmail.com">mrobika84@gmail.com</a></span></div></footer>
-<script>
-document.getElementById('year').textContent=new Date().getFullYear();
-const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-const toggle=document.querySelector('.toggle'),menu=document.querySelector('.menu');
-toggle.addEventListener('click',()=>{menu.classList.toggle('open');toggle.textContent=menu.classList.contains('open')?'✕':'☰'});
-</script>
+<footer><div class="footer shell"><span>© <span id="year"></span> MMI Fazék • MMI specialista</span><span class="credit">DESIGN &amp; DEVELOPMENT BY <a href="https://mahlidigital.com/?lang=hu" target="_blank" rel="noopener"><strong>MÁHLI DIGITAL</strong></a> · RÓBERT MÁHLI</span></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));const toggle=document.querySelector('.toggle'),menu=document.querySelector('.menu');toggle.addEventListener('click',()=>{menu.classList.toggle('open');toggle.textContent=menu.classList.contains('open')?'✕':'☰'});</script>
 </body>
 </html>
