@@ -20,93 +20,12 @@ header{position:fixed;inset:0 0 auto;z-index:50;background:rgba(5,7,11,.72);back
 @media(max-width:980px){.menu{position:fixed;top:82px;left:12px;right:12px;display:none;flex-direction:column;align-items:stretch;padding:18px;border:1px solid var(--line);border-radius:18px;background:rgba(5,7,11,.98)}.menu.open{display:flex}.toggle{display:block}.grid{grid-template-columns:1fr 1fr}.why{grid-template-columns:1fr}.cta{align-items:flex-start;flex-direction:column}}
 @media(max-width:620px){.shell{width:min(100% - 24px,var(--max))}.nav{min-height:74px}.logo{width:220px;max-width:70vw}.menu{top:74px}.hero{min-height:auto;padding:132px 0 75px;background-size:auto 108%;background-position:62% center}h1{font-size:48px}.lead{font-size:16px}.grid{grid-template-columns:1fr}.card{min-height:0}.section{padding:74px 0}.why-copy,.why-list{padding:24px}.actions .btn{flex:1}.footer{padding:28px 0;align-items:flex-start;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.hero{animation:none}.reveal{opacity:1;transform:none;transition:none}}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-3;
-    background:
-      linear-gradient(90deg,rgba(6,10,16,.52),rgba(6,10,16,.30) 48%,rgba(6,10,16,.12)),
-      url('assets/services-c6-vcds.webp') center/cover no-repeat;
-    transform:translateZ(0);
-}
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    background:linear-gradient(180deg,rgba(5,7,11,.02),rgba(5,7,11,.32));
-    pointer-events:none;
-}
-.hero{
-    background-image:none!important;
-    background-color:transparent!important;
-}
-.section,.alt,.trust-strip{
-    background:rgba(5,7,11,.62)!important;
-    backdrop-filter:blur(2px);
-}
-
-
-/* EGYSÉGES VILÁGOSÍTÁS – minden oldal */
-body::after{
-  background:rgba(0,0,0,.20)!important;
-}
-header,.site-header{
-  background:rgba(5,7,11,.20)!important;
-  backdrop-filter:blur(10px)!important;
-  -webkit-backdrop-filter:blur(10px)!important;
-}
-.hero::before{
-  background:rgba(0,0,0,.20)!important;
-}
-.hero::after{
-  background:rgba(0,0,0,.20)!important;
-}
-.section,.section.alt,.alt,.trust-strip{
-  background:rgba(5,7,11,.20)!important;
-  backdrop-filter:blur(8px)!important;
-  -webkit-backdrop-filter:blur(8px)!important;
-}
-.card,.service-premium,.why-copy,.why-list,.why-services-copy,.why-services-list,
-.cta,.contact-card,.hours-card,.rating-card,.map-card,.map-panel,
-.action-card,.reference-card,.category-card,.request-copy,.request-list,
-.about-copy,.about-points,.reviews-copy,.service-preview,.side-card,.box{
-  background:rgba(8,12,18,.38)!important;
-  backdrop-filter:blur(8px)!important;
-  -webkit-backdrop-filter:blur(8px)!important;
-}
-
-.credit{color:#d9dee6}.credit a{color:#fff;font-weight:750}.credit a:hover{color:var(--red)}
-</style>
-</head>
-<body>
-<header><div class="nav shell">
-<a href="index.html"><img class="logo" src="assets/mmi-fazek-logo.svg" alt="MMI Fazék"></a>
-<button class="toggle" aria-label="Menü megnyitása">☰</button>
-<nav class="menu"><a href="index.html">Főoldal</a><a class="active" href="szolgaltatasok.html">Szolgáltatások</a><a href="galeria.html">Galéria</a><a href="hasznalt-alkatreszek.html">Használt alkatrészek</a><a href="kapcsolat.html">Kapcsolat</a></nav>
-</div></header>
-<main>
-<section class="hero"><div class="hero-content shell reveal"><div class="eyebrow">Audi MMI és diagnosztika</div><h1>Szolgáltatások.<br><em>Pontos diagnosztika.</em></h1><p class="lead">Audi elektronikai hibák feltárása, VCDS kódolás, MMI rendszerek és CarPlay megoldások – az autó felszereltségéhez igazítva.</p><div class="actions"><a class="btn primary" href="tel:+36702421991">Telefonhívás</a><a class="btn secondary" href="mailto:mmifazek@gmail.com">E-mail küldése</a></div></div></section>
-<section class="section shell"><div class="section-head reveal"><span class="kicker">Szakterületek</span><h2>Valódi megoldások, felesleges találgatás nélkül.</h2><p>A pontos lehetőségek mindig az autó típusától, évjáratától és felszereltségétől függnek.</p></div>
-<div class="grid">
-<article class="card reveal"><span class="number">01</span><h3>Diagnosztika</h3><p>Hibakódok, élő adatok és vezérlőegységek célzott vizsgálata.</p><ul><li>Hibakód-olvasás</li><li>Élő adatok</li><li>Hibaok feltárása</li></ul></article>
-<article class="card reveal"><span class="number">02</span><h3>Kódolás – VCDS</h3><p>Komfortfunkciók és támogatott gyári lehetőségek beállítása.</p><ul><li>Komfortfunkciók</li><li>Kijelzések</li><li>Gyári beállítások</li></ul></article>
-<article class="card reveal"><span class="number">03</span><h3>MMI rendszerek</h3><p>MMI hibák, frissítések, navigációs és kijelzőproblémák vizsgálata.</p><ul><li>Frissítés</li><li>Navigáció</li><li>Hibakeresés</li></ul></article>
-<article class="card reveal"><span class="number">04</span><h3>Apple CarPlay</h3><p>Kompatibilitás-ellenőrzés és vezetékes vagy vezeték nélküli megoldások.</p><ul><li>Aktiválás</li><li>Vezetékes</li><li>Vezeték nélküli</li></ul></article>
-<article class="card reveal"><span class="number">05</span><h3>Használt Audi alkatrészek</h3><p>Elérhetőség, cikkszám és kompatibilitás egyeztetése.</p><ul><li>MMI egységek</li><li>Kijelzők és modulok</li><li>Műszeregységek</li></ul></article>
-<article class="card reveal"><span class="number">06</span><h3>Tanácsadás</h3><p>Alkatrész, cikkszám és ésszerű megoldási irány kiválasztása.</p><ul><li>Cikkszám</li><li>Kompatibilitás</li><li>Megoldási javaslat</li></ul></article>
-</div></section>
+body::before{content:"";position:fixed;inset:0;z-index:-3;background:linear-gradient(90deg,rgba(6,10,16,.52),rgba(6,10,16,.30) 48%,rgba(6,10,16,.12)),url('assets/services-c6-vcds.webp') center/cover no-repeat;transform:translateZ(0)}body::after{content:"";position:fixed;inset:0;z-index:-2;background:rgba(0,0,0,.20)!important;pointer-events:none}.hero{background-image:none!important;background-color:transparent!important}header,.site-header{background:rgba(5,7,11,.20)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}.hero::before,.hero::after{background:rgba(0,0,0,.20)!important}.section,.section.alt,.alt,.trust-strip{background:rgba(5,7,11,.20)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important}.card,.service-premium,.why-copy,.why-list,.why-services-copy,.why-services-list,.cta,.contact-card,.hours-card,.rating-card,.map-card,.map-panel,.action-card,.reference-card,.category-card,.request-copy,.request-list,.about-copy,.about-points,.reviews-copy,.service-preview,.side-card,.box{background:rgba(8,12,18,.38)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important}.credit{color:#d9dee6}.credit a{color:#fff;font-weight:750}.credit a:hover{color:var(--red)}
+</style></head><body>
+<header><div class="nav shell"><a href="index.html"><img class="logo" src="assets/mmi-fazek-logo.svg" alt="MMI Fazék"></a><button class="toggle" aria-label="Menü megnyitása">☰</button><nav class="menu"><a href="index.html">Főoldal</a><a class="active" href="szolgaltatasok.html">Szolgáltatások</a><a href="galeria.html">Galéria</a><a href="hasznalt-alkatreszek.html">Használt alkatrészek</a><a href="kapcsolat.html">Kapcsolat</a></nav></div></header>
+<main><section class="hero"><div class="hero-content shell reveal"><div class="eyebrow">Audi MMI és diagnosztika</div><h1>Szolgáltatások.<br><em>Pontos diagnosztika.</em></h1><p class="lead">Audi elektronikai hibák feltárása, VCDS kódolás, MMI rendszerek és CarPlay megoldások – az autó felszereltségéhez igazítva.</p><div class="actions"><a class="btn primary" href="tel:+36702421991">Telefonhívás</a><a class="btn secondary" href="mailto:mmifazek@gmail.com">E-mail küldése</a></div></div></section>
+<section class="section shell"><div class="section-head reveal"><span class="kicker">Szakterületek</span><h2>Valódi megoldások, felesleges találgatás nélkül.</h2><p>A pontos lehetőségek mindig az autó típusától, évjáratától és felszereltségétől függnek.</p></div><div class="grid"><article class="card reveal"><span class="number">01</span><h3>Diagnosztika</h3><p>Hibakódok, élő adatok és vezérlőegységek célzott vizsgálata.</p><ul><li>Hibakód-olvasás</li><li>Élő adatok</li><li>Hibaok feltárása</li></ul></article><article class="card reveal"><span class="number">02</span><h3>Kódolás – VCDS</h3><p>Komfortfunkciók és támogatott gyári lehetőségek beállítása.</p><ul><li>Komfortfunkciók</li><li>Kijelzések</li><li>Gyári beállítások</li></ul></article><article class="card reveal"><span class="number">03</span><h3>MMI rendszerek</h3><p>MMI hibák, frissítések, navigációs és kijelzőproblémák vizsgálata.</p><ul><li>Frissítés</li><li>Navigáció</li><li>Hibakeresés</li></ul></article><article class="card reveal"><span class="number">04</span><h3>Apple CarPlay</h3><p>Kompatibilitás-ellenőrzés és vezetékes vagy vezeték nélküli megoldások.</p><ul><li>Aktiválás</li><li>Vezetékes</li><li>Vezeték nélküli</li></ul></article><article class="card reveal"><span class="number">05</span><h3>Használt Audi alkatrészek</h3><p>Elérhetőség, cikkszám és kompatibilitás egyeztetése.</p><ul><li>MMI egységek</li><li>Kijelzők és modulok</li><li>Műszeregységek</li></ul></article><article class="card reveal"><span class="number">06</span><h3>Tanácsadás</h3><p>Alkatrész, cikkszám és ésszerű megoldási irány kiválasztása.</p><ul><li>Cikkszám</li><li>Kompatibilitás</li><li>Megoldási javaslat</li></ul></article></div></section>
 <section class="section alt"><div class="why shell"><div class="why-copy reveal"><span class="kicker">Miért az MMI Fazék?</span><h2>Először diagnosztika. Utána megoldás.</h2><p>Nem alkatrészcserével kezdünk. Először meg kell érteni, mi okozza a hibát, és csak utána érdemes dönteni a következő lépésről.</p></div><div class="why-list reveal"><div><span>✓</span><strong>Pontos hibafeltárás</strong><small>A hiba okát keressük, nem csak a hibakódot.</small></div><div><span>✓</span><strong>Egyedi vizsgálat</strong><small>Minden autó felszereltsége és rendszerverziója más.</small></div><div><span>✓</span><strong>Előzetes egyeztetés</strong><small>Telefonon vagy e-mailben gyorsan tisztázható az alaphelyzet.</small></div><div><span>✓</span><strong>Korrekt irány</strong><small>Ha egy javítás vagy fejlesztés nem éri meg, azt is megmondom.</small></div></div></div></section>
-<section class="section shell"><div class="cta reveal"><div><span class="kicker">Kapcsolat</span><h2>Nem biztos benne, mi a hiba?</h2><p>Telefonon vagy e-mailben röviden egyeztetjük az autót és a problémát.</p></div><div class="actions"><a class="btn primary" href="tel:+36702421991">+36 70 242 1991</a><a class="btn secondary" href="mailto:mmifazek@gmail.com">mmifazek@gmail.com</a></div></div></section>
-</main>
-<footer><div class="footer shell"><span>© <span id="year"></span> MMI Fazék • MMI specialista</span><span class="credit">Az oldalt tervezte és készítette: <strong>Máhli Róbert</strong> • <a href="mailto:mrobika84@gmail.com">mrobika84@gmail.com</a></span></div></footer>
-<script>
-document.getElementById('year').textContent=new Date().getFullYear();
-const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');o.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(e=>o.observe(e));
-const t=document.querySelector('.toggle'),m=document.querySelector('.menu');
-t.addEventListener('click',()=>{m.classList.toggle('open');t.textContent=m.classList.contains('open')?'✕':'☰'});
-</script>
-</body></html>
+<section class="section shell"><div class="cta reveal"><div><span class="kicker">Kapcsolat</span><h2>Nem biztos benne, mi a hiba?</h2><p>Telefonon vagy e-mailben röviden egyeztetjük az autót és a problémát.</p></div><div class="actions"><a class="btn primary" href="tel:+36702421991">+36 70 242 1991</a><a class="btn secondary" href="mailto:mmifazek@gmail.com">mmifazek@gmail.com</a></div></div></section></main>
+<footer><div class="footer shell"><span>© <span id="year"></span> MMI Fazék • MMI specialista</span><span class="credit">DESIGN &amp; DEVELOPMENT BY <a href="https://mahlidigital.com/?lang=hu" target="_blank" rel="noopener"><strong>MÁHLI DIGITAL</strong></a> · RÓBERT MÁHLI</span></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');o.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(e=>o.observe(e));const t=document.querySelector('.toggle'),m=document.querySelector('.menu');t.addEventListener('click',()=>{m.classList.toggle('open');t.textContent=m.classList.contains('open')?'✕':'☰'});</script></body></html>
