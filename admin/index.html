@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>MMI Fazék – Admin belépés</title>
+<style>
+:root{font-family:system-ui,Arial,sans-serif;color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(135deg,#090e15,#1b2636);color:#f5f6f8;display:grid;place-items:center;padding:20px}.panel{width:min(100%,430px);background:#111923;border:1px solid #344052;border-radius:20px;padding:32px;box-shadow:0 16px 55px #0007}h1{font-size:1.6rem;margin:0 0 6px}p{color:#b5bfcd}label{display:block;margin:18px 0 7px;font-weight:600}input{width:100%;padding:13px;background:#0b111a;color:white;border:1px solid #536074;border-radius:9px;font-size:1rem}button{width:100%;border:0;border-radius:9px;background:#dc2335;color:white;padding:14px;margin-top:24px;font-size:1rem;font-weight:700;cursor:pointer}button:disabled{opacity:.65;cursor:wait}.status{min-height:26px;font-size:.92rem;margin-top:14px}.error{color:#ff9da6}.ok{color:#a7eac2}.hidden{display:none}a{color:#d8e2f0}
+</style></head><body><main class="panel"><h1>MMI Fazék Admin</h1><p>Biztonságos belépés a tartalomkezelőbe</p>
+<form id="login"><label for="email">E-mail-cím</label><input id="email" type="email" autocomplete="username" required>
+<label for="password">Jelszó</label><input id="password" type="password" autocomplete="current-password" required minlength="8">
+<button id="submit" type="submit">Bejelentkezés</button></form>
+<section id="account" class="hidden"><p id="welcome"></p><p>A galéria és az alkatrészek szerkesztése fejlesztés alatt áll.</p><button id="logout">Kijelentkezés</button></section>
+<p id="status" class="status" role="status" aria-live="polite"></p><p><a href="/">← Vissza a weboldalra</a></p></main>
+<script type="module">
+import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
+const supabase=createClient('https://mpnyvjulonpommrxqxeg.supabase.co','sb_publishable_IrsJ0ZIDmHaMY8NsJxSH0w_Rz33kZpg');
+const form=document.getElementById('login'),account=document.getElementById('account'),status=document.getElementById('status'),submit=document.getElementById('submit');
+function message(text,error=false){status.textContent=text;status.className='status '+(error?'error':'ok')}
+async function showSession(){const {data:{user},error}=await supabase.auth.getUser();if(error||!user){form.classList.remove('hidden');account.classList.add('hidden');return}
+const {data:role,error:roleError}=await supabase.from('admin_roles').select('role').eq('user_id',user.id).maybeSingle();
+if(roleError||!role||!['super_admin','editor'].includes(role.role)){await supabase.auth.signOut();message('Ehhez a felülethez nincs jogosultságod.',true);form.classList.remove('hidden');account.classList.add('hidden');return}
+document.getElementById('welcome').textContent='Bejelentkezve: '+user.email+' ('+(role.role==='super_admin'?'főadminisztrátor':'szerkesztő')+')';
+form.classList.add('hidden');account.classList.remove('hidden');message('Sikeres bejelentkezés.')}
+form.addEventListener('submit',async e=>{e.preventDefault();submit.disabled=true;message('Bejelentkezés folyamatban…');try{const {error}=await supabase.auth.signInWithPassword({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value});if(error){message('Sikertelen bejelentkezés. Ellenőrizd az adatokat.',true);return}document.getElementById('password').value='';await showSession()}catch{message('Kapcsolódási hiba. Próbáld újra később.',true)}finally{submit.disabled=false}});
+document.getElementById('logout').addEventListener('click',async()=>{await supabase.auth.signOut();message('Kijelentkeztél.');await showSession()});
+showSession();
+</script></body></html>
