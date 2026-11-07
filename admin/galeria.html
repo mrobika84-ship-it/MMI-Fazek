@@ -26,7 +26,7 @@ async function load(){
   const card=document.createElement('div');card.className='item';
   const open=document.createElement('button');open.textContent='📁 '+f.name;open.style.background='#344052';
   open.onclick=()=>{currentFolder=folder+'/'+f.name;load()};
-  card.append(open);grid.append(card);
+  const del=document.createElement('button');del.textContent='Törlés';del.style.marginLeft='8px';del.onclick=async()=>{const child=folder+'/'+f.name;del.disabled=true;try{const {data:entries,error:listError}=await storage.list(child,{limit:1000});if(listError)throw listError;const contents=(entries||[]).filter(x=>x.name&&x.name!=='.keep');if(contents.length){msg('A(z) '+f.name+' mappa nem üres. Előbb töröld a benne lévő fájlokat és almappákat.',true);return}if(!confirm('Biztosan törlöd az üres '+f.name+' mappát?'))return;const {error:removeError}=await storage.remove([child+'/.keep']);if(removeError)throw removeError;await load();msg('Mappa törölve: '+f.name)}catch(e){msg('Mappatörlési hiba: '+(e.message||e),true)}finally{del.disabled=false}};card.append(open,del);grid.append(card);
  }
  for(const f of files){
   const path=folder+'/'+f.name,url=storage.getPublicUrl(path).data.publicUrl;
