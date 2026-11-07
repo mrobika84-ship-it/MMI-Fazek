@@ -7,7 +7,7 @@
 <form id="login"><label for="email">E-mail-cím</label><input id="email" type="email" autocomplete="username" required>
 <label for="password">Jelszó</label><input id="password" type="password" autocomplete="current-password" required minlength="8">
 <button id="submit" type="submit">Bejelentkezés</button></form>
-<section id="account" class="hidden"><p id="welcome"></p><p>A galéria és az alkatrészek szerkesztése fejlesztés alatt áll.</p><button id="logout">Kijelentkezés</button></section>
+<section id="account" class="hidden"><p id="welcome"></p><p><a href="/admin/galeria.html">Galériakezelő megnyitása</a></p><p>Az alkatrészek szerkesztése fejlesztés alatt áll.</p><button id="logout">Kijelentkezés</button></section>
 <p id="status" class="status" role="status" aria-live="polite"></p><p><a href="/">← Vissza a weboldalra</a></p></main>
 <script type="module">
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
