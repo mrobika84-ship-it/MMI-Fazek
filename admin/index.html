@@ -11,7 +11,7 @@
 <p id="status" class="status" role="status" aria-live="polite"></p><p><a href="/">← Vissza a weboldalra</a></p></main>
 <script type="module">
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
-const supabase=createClient('https://mpnyjulonpommrxqeg.supabase.co','sb_publishable_IrsJ0ZIDmHaMY8NsJxSH0w_Rz33kZpg');
+const supabase=createClient('https://mpnyvjulonpommrxqxeg.supabase.co','sb_publishable_IrsJ0ZIDmHaMY8NsJxSH0w_Rz33kZpg');
 const form=document.getElementById('login'),account=document.getElementById('account'),status=document.getElementById('status'),submit=document.getElementById('submit');
 function message(text,error=false){status.textContent=text;status.className='status '+(error?'error':'ok')}
 async function showSession(){const {data:{user},error}=await supabase.auth.getUser();if(error||!user){form.classList.remove('hidden');account.classList.add('hidden');return}
