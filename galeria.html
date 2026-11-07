@@ -10,13 +10,13 @@ async function loadUploadedGallery(){
   let added=0;
   for(const folder of storageFolders){
    try{
-    const res=await fetch(storageBase+'/object/list/gallery',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prefix:folder+'/',limit:1000,offset:0,sortBy:{column:'name',order:'asc'}})});
+    const res=await fetch(storageBase+'/object/list/gallery',{method:'POST',headers:{'Content-Type':'application/json','apikey':'sb_publishable_IrsJ0ZIDmHaMY8NsJxSH0w_Rz33kZpg'},body:JSON.stringify({prefix:folder+'/',limit:1000,offset:0,sortBy:{column:'name',order:'asc'}})});
     if(!res.ok)continue;
     const files=await res.json();
     if(!Array.isArray(files))continue;
     for(const file of files){
      if(!file.name||!file.id||existing.has(file.name))continue;
-     const isVideo=/\\.(mp4|webm)$/i.test(file.name),isImage=/\\.(jpg|jpeg|png|webp|gif)$/i.test(file.name);
+     const isVideo=/\.(mp4|webm)$/i.test(file.name),isImage=/\.(jpg|jpeg|png|webp|gif)$/i.test(file.name);
      if(!isVideo&&!isImage)continue;
      const url=storageBase+'/object/public/gallery/'+encodeURIComponent(folder)+'/'+encodeURIComponent(file.name);
      const item=document.createElement(isVideo?'div':'button');
