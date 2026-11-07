@@ -1,16 +1,57 @@
 <!doctype html>
 <html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>MMI Fazék – Galériakezelő</title>
 <style>:root{font-family:system-ui,Arial,sans-serif;color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#090e15;color:#f5f6f8;padding:24px}main{max-width:1000px;margin:auto}h1{margin-bottom:8px}p{color:#b5bfcd}select,input,button{font:inherit;padding:12px;border-radius:9px}select,input{background:#111923;color:white;border:1px solid #536074;max-width:100%}button{border:0;background:#dc2335;color:white;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:24px 0}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}.item{background:#111923;border:1px solid #344052;border-radius:14px;padding:12px;overflow:hidden}.item img,.item video{width:100%;height:160px;object-fit:cover;border-radius:8px}.item p{overflow-wrap:anywhere;font-size:13px}.item button{background:#8b2330}.hidden{display:none}.status{min-height:24px}.error{color:#ff9da6}a{color:#e9b5bb}</style></head>
-<body><main><p><a href="/admin/">← Admin</a></p><h1>Galériakezelő</h1><p>Az öt meglévő kategória kezelése. A fájlok a Supabase Storage gallery bucketjébe kerülnek. A nyilvános galéria integrációja még fejlesztés alatt áll.</p>
-<section id="locked"><p>Jogosultság ellenőrzése…</p></section><section id="manager" class="hidden"><div class="toolbar"><label for="folder">Mappa:</label><select id="folder"><option value="munka">Munka közben</option><option value="a64f">Audi A6 4F</option><option value="a64g">Audi A6 4G</option><option value="a8d3">Audi A8 D3</option><option value="q74l">Audi Q7 4L</option></select><input id="files" name="galleryFiles" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm" multiple><button id="upload" type="button">Feltöltés</button><button id="refresh">Frissítés</button><button id="importLegacy" type="button" style="background:#344052">Régi galéria átvétele (egyszeri)</button></div><p id="status" class="status" role="status"></p><div id="grid" class="grid"></div></section></main>
+<body><main><p><a href="/admin/">← Admin</a></p><h1>Galériakezelő</h1><p>Képek, videók és almappák kezelése. Mindkét jogosult felhasználó hozhat létre mappákat.</p>
+<section id="locked"><p>Jogosultság ellenőrzése…</p></section><section id="manager" class="hidden"><div class="toolbar"><label for="folder">Mappa:</label><select id="folder"><option value="munka">Munka közben</option><option value="a64f">Audi A6 4F</option><option value="a64g">Audi A6 4G</option><option value="a8d3">Audi A8 D3</option><option value="q74l">Audi Q7 4L</option></select><button id="upFolder" type="button" style="background:#344052">↑ Szülőmappa</button><button id="newFolder" type="button" style="background:#344052">+ Új mappa</button><span id="currentPath" style="overflow-wrap:anywhere"></span><input id="files" name="galleryFiles" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm" multiple><button id="upload" type="button">Feltöltés</button><button id="refresh">Frissítés</button><button id="importLegacy" type="button" style="background:#344052">Régi galéria átvétele (egyszeri)</button></div><p id="status" class="status" role="status"></p><div id="grid" class="grid"></div></section></main>
 <script type="module">
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
 const supabase=createClient('https://mpnyvjulonpommrxqxeg.supabase.co','sb_publishable_IrsJ0ZIDmHaMY8NsJxSH0w_Rz33kZpg');
 const $=id=>document.getElementById(id), bucket='gallery', allowed=['image/jpeg','image/png','image/webp','image/gif','video/mp4','video/webm'];
 function msg(s,error=false){$('status').textContent=s;$('status').className='status'+(error?' error':'')}
 async function auth(){const {data:{user},error}=await supabase.auth.getUser();if(error||!user){$('locked').textContent='Jelentkezz be először az adminoldalon.';return}const {data:role,error:re}=await supabase.from('admin_roles').select('role').eq('user_id',user.id).maybeSingle();if(re||!role||!['super_admin','editor'].includes(role.role)){$('locked').textContent='Nincs jogosultságod a galériakezelőhöz.';return}$('locked').classList.add('hidden');$('manager').classList.remove('hidden');await load()}
-async function load(){const folder=$('folder').value;msg('Betöltés…');const {data,error}=await supabase.storage.from(bucket).list(folder,{limit:1000,sortBy:{column:'name',order:'asc'}});if(error){msg(error.message,true);return}const grid=$('grid');grid.replaceChildren();const files=(data||[]).filter(f=>f.name&&f.id);for(const f of files){const path=folder+'/'+f.name;const url=supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;const card=document.createElement('div');card.className='item';const media=document.createElement(/\.(mp4|webm)$/i.test(f.name)?'video':'img');media.src=url;if(media.tagName==='VIDEO')media.controls=true;else media.alt=f.name;const name=document.createElement('p');name.textContent=f.name;const del=document.createElement('button');del.textContent='Törlés';del.onclick=async()=>{if(!confirm('Biztosan törlöd ezt a fájlt? '+f.name))return;del.disabled=true;const {error}=await supabase.storage.from(bucket).remove([path]);if(error){msg(error.message,true);del.disabled=false}else await load()};card.append(media,name,del);grid.append(card)}msg(files.length+' fájl a mappában.')}
-$('folder').onchange=load;$('refresh').onclick=load;
+let currentFolder='munka';
+const storage=supabase.storage.from(bucket);
+function folderLabel(path){return path.split('/').join(' / ')}
+function validName(name){return name.length>0&&name.length<=80&&!/[\\/\x00-\x1f]/.test(name)&&name!=='.'&&name!=='..'&&!name.startsWith('.')}
+async function load(){
+ const folder=currentFolder; $('currentPath').textContent=folderLabel(folder);
+ $('upFolder').disabled=!folder.includes('/');
+ msg('Betöltés…');
+ const {data,error}=await storage.list(folder,{limit:1000,sortBy:{column:'name',order:'asc'}});
+ if(error){msg(error.message,true);return}
+ const grid=$('grid');grid.replaceChildren();
+ const folders=(data||[]).filter(f=>f.name&&!f.id);
+ const files=(data||[]).filter(f=>f.name&&f.id&&f.name!=='.keep');
+ for(const f of folders){
+  const card=document.createElement('div');card.className='item';
+  const open=document.createElement('button');open.textContent='📁 '+f.name;open.style.background='#344052';
+  open.onclick=()=>{currentFolder=folder+'/'+f.name;load()};
+  card.append(open);grid.append(card);
+ }
+ for(const f of files){
+  const path=folder+'/'+f.name,url=storage.getPublicUrl(path).data.publicUrl;
+  const card=document.createElement('div');card.className='item';
+  const media=document.createElement(/\.(mp4|webm)$/i.test(f.name)?'video':'img');
+  media.src=url;if(media.tagName==='VIDEO')media.controls=true;else media.alt=f.name;
+  const name=document.createElement('p');name.textContent=f.name;
+  const del=document.createElement('button');del.textContent='Törlés';
+  del.onclick=async()=>{if(!confirm('Biztosan törlöd ezt a fájlt? '+f.name))return;del.disabled=true;const {error}=await storage.remove([path]);if(error){msg(error.message,true);del.disabled=false}else await load()};
+  card.append(media,name,del);grid.append(card);
+ }
+ msg(folders.length+' almappa, '+files.length+' fájl.');
+}
+$('newFolder').onclick=async()=>{
+ const name=(prompt('Új mappa neve a következő helyen: '+folderLabel(currentFolder))||'').trim();
+ if(!name)return;
+ if(!validName(name)){msg('Érvénytelen mappanév. Ne használj / vagy \\ jelet, és legfeljebb 80 karaktert írj.',true);return}
+ const target=currentFolder+'/'+name+'/.keep';
+ const {error}=await storage.upload(target,new Blob([''],{type:'text/plain'}),{contentType:'text/plain',upsert:false});
+ if(error){msg('Mappa létrehozása sikertelen: '+error.message,true);return}
+ currentFolder+='/'+name;await load();
+};
+$('upFolder').onclick=()=>{if(currentFolder.includes('/')){currentFolder=currentFolder.slice(0,currentFolder.lastIndexOf('/'));load()}};
+
+$('folder').onchange=()=>{currentFolder=$('folder').value;load()};$('refresh').onclick=load;
 let selectedFiles=[];
 const fileInput=$('files');
 function rememberSelection(){
@@ -22,7 +63,7 @@ fileInput.addEventListener('input',rememberSelection);
 $('upload').onclick=async()=>{
  const files=selectedFiles.length?selectedFiles:Array.from(fileInput.files||[]);
  if(!files.length){msg('A böngésző nem adta át a kiválasztott fájlt. Nyisd meg az oldalt közvetlenül Chrome-ban, és válaszd ki újra.',true);return}
-if(!files.length){msg('Válassz ki legalább egy fájlt.',true);return}const btn=$('upload');btn.disabled=true;try{for(const file of files){if(!allowed.includes(file.type)||file.size>50*1024*1024){msg('Nem támogatott fájl vagy 50 MB-nál nagyobb: '+file.name,true);return}const ext=file.name.split('.').pop().toLowerCase();const path=$('folder').value+'/'+crypto.randomUUID()+'.'+ext;msg('Feltöltés: '+file.name);const {error}=await supabase.storage.from(bucket).upload(path,file,{contentType:file.type,upsert:false});if(error){msg('Feltöltési hiba: '+error.message,true);return}}selectedFiles=[];fileInput.value='';await load()}catch(e){msg('Feltöltési hiba: '+(e?.message||String(e)),true)}finally{btn.disabled=false}};
+if(!files.length){msg('Válassz ki legalább egy fájlt.',true);return}const btn=$('upload');btn.disabled=true;try{for(const file of files){if(!allowed.includes(file.type)||file.size>50*1024*1024){msg('Nem támogatott fájl vagy 50 MB-nál nagyobb: '+file.name,true);return}const ext=file.name.split('.').pop().toLowerCase();const path=currentFolder+'/'+crypto.randomUUID()+'.'+ext;msg('Feltöltés: '+file.name);const {error}=await supabase.storage.from(bucket).upload(path,file,{contentType:file.type,upsert:false});if(error){msg('Feltöltési hiba: '+error.message,true);return}}selectedFiles=[];fileInput.value='';await load()}catch(e){msg('Feltöltési hiba: '+(e?.message||String(e)),true)}finally{btn.disabled=false}};
 
 const legacyFiles=[["munka","assets/gallery/munka-kozben/munka-01.webp"],["munka","assets/gallery/munka-kozben/munka-02.webp"],["munka","assets/gallery/munka-kozben/munka-03.webp"],["munka","assets/gallery/munka-kozben/munka-04.webp"],["munka","assets/gallery/munka-kozben/munka-05.webp"],["munka","assets/gallery/munka-kozben/munka-06.webp"],["a64f","assets/gallery/a6-4f/a6-4f-01.webp"],["a64f","assets/gallery/a6-4f/a6-4f-02.webp"],["a64f","assets/gallery/a6-4f/a6-4f-03.webp"],["a64g","assets/gallery/a6-4g/a6-4g-01.webp"],["a64g","assets/gallery/a6-4g/a6-4g-02.webp"],["a64g","assets/gallery/a6-4g/a6-4g-03.webp"],["a64g","assets/gallery/a6-4g/a6-4g-04.webp"],["q74l","assets/gallery/q7-4l/q7-4l-01.webp"],["a64f","assets/gallery/a6-4f/a6-4f-video-01.mp4"],["a64f","assets/gallery/a6-4f/a6-4f-video-02.mp4"],["a64f","assets/gallery/a6-4f/a6-4f-video-03.mp4"],["a64f","assets/gallery/a6-4f/a6-4f-video-04.mp4"],["a64f","assets/gallery/a6-4f/a6-4f-video-05.mp4"],["a64f","assets/gallery/a6-4f/a6-4f-video-06.mp4"],["a64g","assets/gallery/a6-4g/a6-4g-video-01.mp4"],["a8d3","assets/gallery/a8-d3/a8-d3-video-01.mp4"]];
 $('importLegacy').onclick=async()=>{
