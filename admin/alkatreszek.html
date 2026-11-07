@@ -1,4 +1,4 @@
-<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>MMI Fazék – Alkatrészkezelő</title><style>*{box-sizing:border-box}body{margin:0;padding:20px;background:#090e15;color:#f4f6fa;font-family:system-ui}main{max-width:1050px;margin:auto}a{color:#ffb8c0}button,input,select,textarea{font:inherit;padding:11px;border-radius:9px}input,select,textarea{background:#141e2b;color:#fff;border:1px solid #536074;max-width:100%}button{background:#dc2335;color:white;border:0;cursor:pointer}button:disabled{opacity:.5}.toolbar,.actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:15px 0}.card{background:#131d29;border:1px solid #344052;border-radius:13px;padding:15px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}.grid img{width:100%;height:140px;object-fit:cover;border-radius:9px}.field{display:grid;gap:6px;margin:12px 0}.hidden{display:none}.muted{color:#b5bfcd}.error{color:#ff9da6}textarea{width:100%;min-height:95px}#form input:not([type=file]){width:100%}.secondary{background:#344052}</style></head><body><main><p><a href="/admin/">← Admin</a></p><h1>Használt alkatrészek kezelése</h1><p class="muted">Mindkét jogosult felhasználó kezelheti a hirdetéseket és az almappákat. A régi hirdetések változatlanul megmaradnak.</p><section id="locked">Jogosultság ellenőrzése…</section><section id="manager" class="hidden"><div class="toolbar"><select id="root"><option value="2g">MMI 2G</option><option value="3g">MMI 3G</option></select><button id="up" class="secondary">↑ Vissza</button><button id="newfolder" class="secondary">+ Új mappa</button><button id="newitem">+ Új hirdetés</button></div><p id="path"></p><p id="status" role="status"></p><div id="listing" class="grid"></div><form id="form" class="card hidden"><h2 id="formtitle">Hirdetés</h2><div class="field"><label for="name">Alkatrész neve *</label><input id="name" required maxlength="140"></div><div class="field"><label for="price">Ár (Ft)</label><input id="price" type="number" min="0" step="1" placeholder="pl. 20000"></div><div class="field"><label for="description">Leírás</label><textarea id="description" maxlength="4000"></textarea></div><div class="field"><label for="photos">Új fényképek (több is választható)</label><input id="photos" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple></div><div id="photoPreview" class="grid"></div><div class="actions"><button id="save" type="submit">Hirdetés mentése</button><button id="cancel" type="button" class="secondary">Mégse</button></div></form></section></main><script type="module">
+<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>MMI Fazék – Alkatrészkezelő</title><style>*{box-sizing:border-box}body{margin:0;padding:20px;background:#090e15;color:#f4f6fa;font-family:system-ui}main{max-width:1050px;margin:auto}a{color:#ffb8c0}button,input,select,textarea{font:inherit;padding:11px;border-radius:9px}input,select,textarea{background:#141e2b;color:#fff;border:1px solid #536074;max-width:100%}button{background:#dc2335;color:white;border:0;cursor:pointer}button:disabled{opacity:.5}.toolbar,.actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:15px 0}.card{background:#131d29;border:1px solid #344052;border-radius:13px;padding:15px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}.grid img{width:100%;height:140px;object-fit:cover;border-radius:9px}.field{display:grid;gap:6px;margin:12px 0}.hidden{display:none}.muted{color:#b5bfcd}.error{color:#ff9da6}textarea{width:100%;min-height:95px}#form input:not([type=file]){width:100%}.secondary{background:#344052}</style></head><body><main><p><a href="/admin/">← Admin</a></p><h1>Használt alkatrészek kezelése</h1><p class="muted">Mindkét jogosult felhasználó kezelheti a hirdetéseket és az almappákat. A régi hirdetések változatlanul megmaradnak.</p><section id="locked">Jogosultság ellenőrzése…</section><section id="manager" class="hidden"><div class="toolbar"><select id="root"><option value="2g">MMI 2G</option><option value="3g">MMI 3G</option></select><button id="up" class="secondary">↑ Vissza</button><button id="newfolder" class="secondary">+ Új mappa</button><button id="newitem">+ Új hirdetés</button><button id="importOld" class="secondary" type="button">Régi hirdetések átvétele</button></div><p id="path"></p><p id="status" role="status"></p><div id="listing" class="grid"></div><form id="form" class="card hidden"><h2 id="formtitle">Hirdetés</h2><div class="field"><label for="name">Alkatrész neve *</label><input id="name" required maxlength="140"></div><div class="field"><label for="price">Ár (Ft)</label><input id="price" type="number" min="0" step="1" placeholder="pl. 20000"></div><div class="field"><label for="description">Leírás</label><textarea id="description" maxlength="4000"></textarea></div><div class="field"><label for="photos">Új fényképek (több is választható)</label><input id="photos" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple></div><div id="photoPreview" class="grid"></div><div class="actions"><button id="save" type="submit">Hirdetés mentése</button><button id="cancel" type="button" class="secondary">Mégse</button></div></form></section></main><script type="module">
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
 const sb=createClient('https://mpnyvjulonpommrxqxeg.supabase.co','sb_publishable_IrsJ0ZIDmHaMY8NsJxSH0w_Rz33kZpg'),storage=sb.storage.from('gallery'),$=id=>document.getElementById(id);
 let folder='parts/2g',editing=null,removedPhotos=[];
@@ -29,5 +29,41 @@ const {error}=await storage.upload(target,new Blob([JSON.stringify(item)],{type:
 if(removedPhotos.length){const {error:removeError}=await storage.remove(removedPhotos);if(removeError)console.warn('Old photo removal failed',removeError)}
 await load();msg('Hirdetés sikeresen mentve.');
 }catch(err){msg('Mentési hiba: '+(err.message||err),true)}finally{btn.disabled=false}};
+
+const oldListings=[["2g","MMI 2G erősítő",20000,"Audi / ASK Sound Amplifier.",["viber_kép_2026-09-17_13-07-39-564.jpg"]],["2g","MMI 2G Bose erősítő",40000,"Bose hangrendszerhez való erősítőegység.",["viber_kép_2026-09-17_13-07-40-041.jpg"]],["2g","MMI 2G erősítő",20000,"Audi gyári erősítőegység.",["viber_kép_2026-09-17_13-07-40-246.jpg"]],["2g","MMI 2G DAB tuner","","Audi / Kenwood DAB tuner egység.",["viber_kép_2026-09-17_13-07-40-462.jpg"]],["2g","Digitális klímapanel – szürke","","Ülésfűtéses kivitel.",["viber_kép_2026-09-17_13-07-41-541.jpg"]],["2g","Digitális klímapanel – fekete","","Ülésfűtéses kivitel.",["viber_kép_2026-09-17_13-07-41-962.jpg"]],["3g","MMI 3G kezelő",35000,"",["viber_kép_2026-09-17_13-07-32-366.jpg"]],["3g","MMI 3G Radio Unit","","",["viber_kép_2026-09-17_13-07-40-693.jpg","viber_kép_2026-09-17_13-07-40-901.jpg"]],["3g","MMI 3G Main Unit","","",["viber_kép_2026-09-17_13-07-41-120.jpg","viber_kép_2026-09-17_13-07-41-334.jpg"]]];
+$('importOld').onclick=async()=>{
+ if(!confirm('A 9 régi hirdetést és a 11 fényképet átmásoljuk a Supabase-ba. A régi oldalak és képek megmaradnak. Indítod?'))return;
+ const btn=$('importOld');btn.disabled=true;let imported=0,skipped=0,failed=[];
+ try{
+  for(let i=0;i<oldListings.length;i++){
+   const [category,name,price,description,images]=oldListings[i];
+   const id='legacy-'+category+'-'+String(i+1).padStart(2,'0'),dir='parts/'+category,target=dir+'/item-'+id+'.json';
+   msg('Átvétel '+(i+1)+'/'+oldListings.length+': '+name);
+   try{
+    const {data:present,error:check}=await storage.info(target);
+    if(!check&&present){skipped++;continue}
+    const photos=[];
+    for(let j=0;j<images.length;j++){
+     const filename=images[j],photoPath=dir+'/photos/'+id+'/'+filename;
+     const {data:existing,error:photoCheck}=await storage.info(photoPath);
+     if(!photoCheck&&existing){photos.push(photoPath);continue}
+     const res=await fetch('/'+encodeURIComponent(filename));
+     if(!res.ok)throw Error('Nem érhető el a kép: '+filename+' (HTTP '+res.status+')');
+     const blob=await res.blob();
+     const {error:uploadError}=await storage.upload(photoPath,blob,{contentType:'image/jpeg',upsert:false});
+     if(uploadError&&!/already exists|duplicate/i.test(uploadError.message))throw uploadError;
+     photos.push(photoPath);
+    }
+    const item={id,name,price,description,photos,updatedAt:new Date().toISOString()};
+    const {error:saveError}=await storage.upload(target,new Blob([JSON.stringify(item)],{type:'application/json'}),{contentType:'application/json',upsert:false});
+    if(saveError){if(/already exists|duplicate/i.test(saveError.message)){skipped++;continue}throw saveError}
+    imported++;
+   }catch(e){failed.push(name+': '+(e.message||e))}
+  }
+  folder='parts/'+$('root').value;
+  await load();
+  msg('Átvétel kész: '+imported+' új hirdetés, '+skipped+' már megvolt, '+failed.length+' hiba.'+(failed.length?' Hibák: '+failed.join('; '):''),failed.length>0);
+ }finally{btn.disabled=false}
+};
 auth();
 </script></body></html>
