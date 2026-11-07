@@ -44,7 +44,7 @@ $('importOld').onclick=async()=>{
     if(!check&&present){skipped++;continue}
     const photos=[];
     for(let j=0;j<images.length;j++){
-     const filename=images[j],photoPath=dir+'/photos/'+id+'/'+filename;
+     const filename=images[j],ext=filename.split('.').pop().toLowerCase(),photoPath=dir+'/photos/'+id+'/legacy-photo-'+String(j+1).padStart(2,'0')+'.'+ext;
      const {data:existing,error:photoCheck}=await storage.info(photoPath);
      if(!photoCheck&&existing){photos.push(photoPath);continue}
      const res=await fetch('/'+encodeURIComponent(filename));
