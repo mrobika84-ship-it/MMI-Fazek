@@ -24,26 +24,33 @@ function appendStorageMedia(grid,folder,file,existing){
  if(isVideo){media.controls=true;media.preload='metadata'}else{media.alt=file.name;media.loading='lazy';item.onclick=()=>{const box=document.getElementById('lightbox');box.querySelector('img').src=url;box.querySelector('.lb-count').textContent=file.name;box.classList.add('open')}}
  item.append(media);grid.append(item);existing.add(file.name);return true;
 }
-async function loadNested(panelId,folder,container,depth=0){
+async function loadNested(panelId,folders,container,depth=0){
  if(depth>12)return;
- const panel=document.getElementById(panelId),grid=container.querySelector('.media-grid'),sub=container.querySelector('.subfolder-grid');
+ const grid=container.querySelector('.media-grid'),sub=container.querySelector('.subfolder-grid');
  grid.replaceChildren();sub.replaceChildren();
- try{
-  const files=await listStorage(folder);
-  const existing=new Set();
-  for(const file of files){
-   if(file.name&&!file.id){
-    const btn=document.createElement('button');btn.className='subfolder-btn';btn.textContent='📁 '+file.name;
-    btn.onclick=()=>{
-     const child=document.createElement('div');child.innerHTML='<button type="button" class="back-btn subfolder-back">← Vissza</button><div class="subfolder-grid"></div><div class="media-grid"></div>';
-     child.querySelector('.subfolder-back').onclick=()=>{child.remove();container.hidden=false};
-     container.hidden=true;container.after(child);
-     loadNested(panelId,folder+'/'+file.name,child,depth+1);
-    };
-    sub.append(btn);
-   }else appendStorageMedia(grid,folder,file,existing);
-  }
- }catch(e){console.warn('Gallery folder unavailable',folder,e)}
+ const children=new Map(),existing=new Set();
+ for(const folder of folders){
+  try{
+   const files=await listStorage(folder);
+   for(const file of files){
+    if(file.name&&!file.id){
+     const key=file.name.toLocaleLowerCase();
+     if(!children.has(key))children.set(key,{name:file.name,paths:[]});
+     children.get(key).paths.push(folder+'/'+file.name);
+    }else appendStorageMedia(grid,folder,file,existing);
+   }
+  }catch(e){console.warn('Gallery folder unavailable',folder,e)}
+ }
+ for(const childFolder of children.values()){
+  const btn=document.createElement('button');btn.className='subfolder-btn';btn.textContent='📁 '+childFolder.name;
+  btn.onclick=()=>{
+   const child=document.createElement('div');child.innerHTML='<button type="button" class="back-btn subfolder-back">← Vissza</button><div class="subfolder-grid"></div><div class="media-grid"></div>';
+   child.querySelector('.subfolder-back').onclick=()=>{child.remove();container.hidden=false};
+   container.hidden=true;container.after(child);
+   loadNested(panelId,childFolder.paths,child,depth+1);
+  };
+  sub.append(btn);
+ }
 }
 async function loadUploadedGallery(){
  for(const [panelId,storageFolders] of Object.entries(folderMap)){
@@ -51,23 +58,28 @@ async function loadUploadedGallery(){
   if(!grid)continue;
   const sub=document.createElement('div');sub.className='subfolder-grid';grid.before(sub);
   const existing=new Set([...grid.querySelectorAll('img,video')].map(el=>{try{return decodeURIComponent(new URL(el.src,location.href).pathname.split('/').pop())}catch{return ''}}));
-  let added=0;
+  const children=new Map();let added=0;
   for(const folder of storageFolders){
    try{
     const files=await listStorage(folder);
     for(const file of files){
      if(file.name&&!file.id){
-      const btn=document.createElement('button');btn.className='subfolder-btn';btn.textContent='📁 '+file.name;
-      btn.onclick=()=>{
-       const view=document.createElement('div');view.innerHTML='<button type="button" class="back-btn subfolder-back">← Vissza a kategóriához</button><div class="subfolder-grid"></div><div class="media-grid"></div>';
-       view.querySelector('.subfolder-back').onclick=()=>{view.remove();sub.hidden=false;grid.hidden=false};
-       sub.hidden=true;grid.hidden=true;grid.after(view);
-       loadNested(panelId,folder+'/'+file.name,view,1);
-      };
-      sub.append(btn);
+      const key=file.name.toLocaleLowerCase();
+      if(!children.has(key))children.set(key,{name:file.name,paths:[]});
+      children.get(key).paths.push(folder+'/'+file.name);
      }else if(appendStorageMedia(grid,folder,file,existing))added++;
     }
    }catch(err){console.warn('Storage gallery unavailable',folder,err)}
+  }
+  for(const childFolder of children.values()){
+   const btn=document.createElement('button');btn.className='subfolder-btn';btn.textContent='📁 '+childFolder.name;
+   btn.onclick=()=>{
+    const view=document.createElement('div');view.innerHTML='<button type="button" class="back-btn subfolder-back">← Vissza a kategóriához</button><div class="subfolder-grid"></div><div class="media-grid"></div>';
+    view.querySelector('.subfolder-back').onclick=()=>{view.remove();sub.hidden=false;grid.hidden=false};
+    sub.hidden=true;grid.hidden=true;grid.after(view);
+    loadNested(panelId,childFolder.paths,view,1);
+   };
+   sub.append(btn);
   }
   if(added){const badge=document.querySelector('.folder-card[data-folder="'+panelId+'"] .count');if(badge)badge.textContent+=' • +'+added+' új'}
  }
